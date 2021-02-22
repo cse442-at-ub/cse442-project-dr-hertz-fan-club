@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+div.hidden {
+	display: none;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+.center {
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+</style>
+<body style="background-color: #00fbff">
+<h1 style="text-align:center;">Create a listing</h1>
+
+<div class="center" id="info">
+	<fieldset style="background-color: #ff0044">
+		<legend style="background-color: #EBB8FE"> Contact Information </legend>
+			<p>
+				<label for="name"> Name: </label>
+				<input type="text" id="name" name="info" placeholder="Required"/>
+				<br>
+				<br>
+				<label for="email"> Email: </label>
+				<input type="text" id="email" name="info" placeholder="Required"/>
+				<br>
+				<br>
+				<label for="phone"> Phone Number: </label>
+				<input type="text" id="phone" name="info" placeholder="Required"/>
+			</p>
+	</fieldset>
+</div>
+
+<div class="center" id="listingtype">
+	<fieldset style="background-color: #99ff00">
+		<legend style="background-color: #ffaa00"> Type Of Listing </legend>
+			<p>
+				<input type="radio" id="selltextbook" name="listingtype" value="selltextbook" onclick="showListing('selltextlooklisting')">
+				<label for="textbook">Sell a textbook</label>
+				<input type="radio" id="listhousing" name="listingtype" value="listhousing" onclick="showListing('offcampuslisting')">
+				<label for="listhousing">List off-campus housing</label>
+				<input type="radio" id="findroommates" name="listingtype" value="findroommates" onclick="showListing('roommatelisting')">
+				<label for="housing">Find roommate(s)</label>
+			</p>
+	</fieldset>
+</div>
+
+<div class="hidden" id="selltextlooklisting">
+	<fieldset style="background-color: #fff700">
+		<legend style="background-color: #00ddff"> Description </legend>
+			<p>
+				<label for="condition"> Textbook Condition: </label>
+				<select name="condition" id="condition">
+					<option value="Brand New"> Brand New </option>
+					<option value="Like New"> Like New </option>
+					<option value="Very Good"> Very Good </option>
+					<option value="Good"> Good </option>
+					<option value="Poor"> Poor </option>
+					<option value="Very Poor"> Very Poor </option>
+				</select>
+				<br>
+				<br>
+				<label for="course"> Course: </label>
+				<select name="course" id="course">
+					<option value="None"> None </option>
+					<option value="AAS"> AAS </option>
+					<option value="ASL"> ASL </option>
+					<option value="AMS"> AMS </option>
+					<option value="APY"> APY </option>
+					<option value="ARI"> ARI </option>
+					<option value="ARC"> ARC </option>
+					<option value="ART"> ART </option>
+					<option value="AHI"> AHI </option>
+					<option value="AS"> AS </option>
+					<option value="BCH"> BCH </option>
+					<option value="BIO"> BIO </option>
+					<option value="BE"> BE </option>
+					<option value="BMI"> BMI </option>
+					<option value="BMS"> BMS </option>
+					<option value="STA"> STA </option>
+					<option value="CE"> CE </option>
+					<option value="CHE"> CHE </option>
+					<option value="CHI"> CHI </option>
+					<option value="CIE"> CIE </option>
+					<option value="CL"> CL </option>
+					<option value="COM"> COM </option>
+					<option value="CDS"> CDS </option>
+					<option value="CHB"> CHB </option>
+					<option value="COL"> COL </option>
+					<option value="CDA"> CDA </option>
+					<option value="CSE"> CSE </option>
+					<option value="CPM"> CPM </option>
+					<option value="CEP"> CEP </option>
+					<option value="DAC"> DAC </option>
+					<option value="ECO"> ECO </option>
+					<option value="ELP"> ELP </option>
+					<option value="EE"> EE </option>
+					<option value="EAS"> EAS </option>
+					<option value="ENG"> ENG </option>
+					<option value="ESL"> ESL </option>
+					<option value="EVS"> EVS </option>
+					<option value="END"> END </option>
+					<option value="ES"> ES </option>
+					<option value="FR"> FR </option>
+					<option value="MGG"> MGG </option>
+					<option value="GEO"> GEO </option>
+					<option value="GLY"> GLY </option>
+					<option value="GER"> GER </option>
+					<option value="GGS"> GGS </option>
+					<option value="GR"> GR </option>
+					<option value="GRE"> GRE </option>
+					<option value="HEB"> HEB </option>
+					<option value="HIN"> HIN </option>
+					<option value="HIS"> HIS </option>
+					<option value="HON"> HON </option>
+					<option value="IE"> IE </option>
+					<option value="ITA"> ITA </option>
+					<option value="JPN"> JPN </option>
+					<option value="JDS"> JDS </option>
+					<option value="KOR"> KOR </option>
+					<option value="LAT"> LAT </option>
+					<option value="LLS"> LLS </option>
+					<option value="LAW"> LAW </option>
+					<option value="ULC"> ULC </option>
+					<option value="LAI"> LAI </option>
+					<option value="LIS"> LIS </option>
+					<option value="LIN"> LIN </option>
+					<option value="MGA"> MGA </option>
+					<option value="MGE"> MGE </option>
+					<option value="MGF"> MGF </option>
+					<option value="MGI"> MGI </option>
+					<option value="MGM"> MGM </option>
+					<option value="MGO"> MGO </option>
+					<option value="MGQ"> MGQ </option>
+					<option value="MGS"> MGS </option>
+					<option value="MGT"> MGT </option>
+					<option value="MDI"> MDI </option>
+					<option value="MTH"> MTH </option>
+					<option value="MAE"> MAE </option>
+					<option value="DMS"> DMS </option>
+					<option value="MT"> MT </option>
+					<option value="MCH"> MCH </option>
+					<option value="MIC"> MIC </option>
+					<option value="MLS"> MLS </option>
+					<option value="MUS"> MUS </option>
+					<option value="MTR"> MTR </option>
+					<option value="NRS"> NRS </option>
+					<option value="NMD"> NMD </option>
+					<option value="NTR"> NTR </option>
+					<option value="OT"> OT </option>
+					<option value="MGB"> MGB </option>
+					<option value="PAS"> PAS </option>
+					<option value="PHC"> PHC </option>
+					<option value="PMY"> PMY </option>
+					<option value="PHM"> PHM </option>
+					<option value="PHI"> PHI </option>
+					<option value="PHY"> PHY </option>
+					<option value="PGY"> PGY </option>
+					<option value="POL"> POL </option>
+					<option value="PS"> PS </option>
+					<option value="PSC"> PSC </option>
+					<option value="PSY"> PSY </option>
+					<option value="PUB"> PUB </option>
+					<option value="NBC"> NBC </option>
+					<option value="REC"> REC </option>
+					<option value="RLL"> RLL </option>
+					<option value="RUS"> RUS </option>
+					<option value="SSC"> SSC </option>
+					<option value="SW"> SW </option>
+					<option value="SOC"> SOC </option>
+					<option value="SPA"> SPA </option>
+					<option value="TH"> TH </option>
+					<option value="NBS"> NBS </option>
+					<option value="UGC"> UGC </option>
+					<option value="UE"> UE </option>
+					<option value="NSG"> NSG </option>
+					<option value="YID"> YID </option>
+				</select>
+				<br>
+				<label for="coursenumber"> Course Number: </label>
+				<input type="text" id="coursenumber" name="coursenumber" placeholder="Optional"/>
+				<p> Details: </p>
+				<textarea id="textbookdetails" name="textbookdetails" rows="10" cols="90" required></textarea>
+			</p>
+	</fieldset>
+ </div>
+
+<div class="hidden" id="offcampuslisting">
+	<fieldset style="background-color: #fff700">
+		<legend style="background-color: #00ddff"> Description </legend>
+			<p>
+				<label for="housingtype"> Housing Type: </label>
+				<select name="housingtype" id="housingtype">
+					<option value="Whole House"> Whole House </option>
+					<option value="Upper Flat"> Upper Flat </option>
+					<option value="Lower Flat"> Lower Flat </option>
+					<option value="Apartment"> Apartment </option>
+				</select>
+				<br>
+				<label for="bedrooms"> Number Of Bedrooms: </label>
+				<select name="bedrooms" id="bedrooms">
+					<option value="1"> 1 </option>
+					<option value="2"> 2 </option>
+					<option value="3"> 3 </option>
+					<option value="4"> 4 </option>
+					<option value="5"> 5 </option>
+					<option value="6"> 6 </option>
+					<option value="7"> 7 </option>
+					<option value="8"> 8 </option>
+					<option value="9"> 9 </option>
+					<option value="10"> 10 </option>
+					<option value="11"> 11 </option>
+					<option value="12"> 12 </option>
+				</select>
+				<br>
+				<label for="bathrooms"> Number Of Bathrooms: </label>
+				<select name="bathrooms" id="bathrooms">
+					<option value="1"> 1 </option>
+					<option value="2"> 2 </option>
+					<option value="3"> 3 </option>
+					<option value="4"> 4 </option>
+					<option value="5"> 5 </option>
+					<option value="6"> 6 </option>
+					<option value="7"> 7 </option>
+					<option value="8"> 8 </option>
+					<option value="9"> 9 </option>
+					<option value="10"> 10 </option>
+					<option value="11"> 11 </option>
+					<option value="12"> 12 </option>
+				</select>
+				<p> Details: </p>
+				<textarea id="housingdetails" name="housingdetails" rows="10" cols="90" required></textarea>
+				<p> Address: </p>
+				<textarea id="address" name="address" rows="5" cols="40" required></textarea>
+			</p>
+	</fieldset>
+</div>
+
+<div class="hidden" id="roommatelisting">
+	<fieldset style="background-color: #fff700">
+		<legend style="background-color: #00ddff"> Description </legend>
+			<p>
+				<label for="roommatenumber"> How many roommate(s) are you looking for? </label>
+				<select name="roommatenumber" id="roommatenumber">
+					<option value="1"> 1 </option>
+					<option value="2"> 2 </option>
+					<option value="3"> 3 </option>
+					<option value="4"> 4 </option>
+					<option value="5"> 5 </option>
+					<option value="6"> 6 </option>
+					<option value="7"> 7 </option>
+					<option value="8"> 8 </option>
+					<option value="9"> 9 </option>
+					<option value="10"> 10 </option>
+					<option value="11"> 11 </option>
+					<option value="12"> 12 </option>
+				</select>
+				<br>
+				<br>
+				<label for="roommategender"> Gender of roommate(s)? </label>
+				<select name="roommategender" id="roommategender">
+					<option value="Female"> Female Only </option>
+					<option value="Male"> Male Only </option>
+					<option value="Any"> Any Gender </option>
+					<option value="Other"> Other </option>
+				</select>
+				<p> Details: </p>
+				<textarea id="roommatedetails" name="roommatedetails" rows="10" cols="90" required></textarea>
+			</p>
+	</fieldset>
+</div>
+
+<div class="center">
+	<p>
+		<input type="submit" value="Create">
+	</p>
+</div>
+
+<script type="text/javascript">
+	function showListing(type) {
+		document.getElementById(type).style.display = "block";
+		if (type === "selltextlooklisting") {
+			document.getElementById("offcampuslisting").style.display = "none";
+			document.getElementById("roommatelisting").style.display = "none";
+		} else if (type === "offcampuslisting") {
+			document.getElementById("selltextlooklisting").style.display = "none";
+			document.getElementById("roommatelisting").style.display = "none";
+		} else if (type === "roommatelisting") {
+			document.getElementById("selltextlooklisting").style.display = "none";
+			document.getElementById("offcampuslisting").style.display = "none";
+		}
+	}
+</script>
+
+</body>
+</html>
