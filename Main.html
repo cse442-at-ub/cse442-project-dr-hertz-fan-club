@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>UB Market</title>
+
+    <meta name="description" content="UB CSE442 Project">
+    <meta name="author" content="Dr. Hertz Fan Club">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <style>
+        input[type=text] {
+            width: 130px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            /*background-image: url();*/
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 50%;
+        }
+
+        iframe {
+            height: 100vh;
+            width: 100%;
+        }
+
+        select {
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            /*background-image: url();*/
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 10px 12px 10px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+<div class="container-fluid">
+
+    <! -- Nav Bar -->
+    <div class="col-md-12">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark fixed-top">
+
+            <h1 class="page-header" style="color: white; margin-right: 20px">UB Market</h1>
+            <div class="collapse navbar-collapse">
+
+                <!--                Searching component-->
+                <div class="mr-auto">
+                    <form class="form-inline">
+                        <select name="category">
+                            <option value="All">All</option>
+                            <option value="Books">Books</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Roommates">Roommates</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <input type="text" name="search" placeholder="Search..">
+                        <button class="btn btn-primary" type="submit" style="padding: 12px 20px; border-radius: 4px">
+                            Search
+                        </button>
+                    </form>
+
+
+
+                </div>
+                <div class="navbar-nav ml-auto">
+<!--                    Change to a real button in future version-->
+                    <a class="btn btn-primary" href="listing.html" target="_blank" style="padding: 12px 20px; border-radius: 4px">
+                        Post
+                    </a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size: 20px">Profile</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">My Post</a>
+                            <a class="dropdown-item" href="#">Change Name</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
+                            <div class="dropdown-divider">
+                            </div>
+                            <a class="dropdown-item" href="#">Report Issue</a>
+                        </div>
+                    </li>
+                    <h3 style="color: white">
+                        |
+                    </h3>
+                    <!--                    Change to a real button in future version-->
+                    <a class="btn btn-danger my-2 my-sm-0" style="margin-left: 10px; padding: 12px 20px; border-radius: 4px" href="landing.html">
+                        Log out
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--Break page into 2 parts, left for all listing, right for details of chosen post-->
+    <div class="row" style="margin-top: 60px">
+        <div class="col-md-12">
+            <div class="row" style="height: 100%">
+                <div class="col-md-4">
+                    <iframe src="Cards.html"></iframe>
+                </div>
+                <div class="col-md-8" style="margin-top: 30px">
+                    <iframe src="Details.html" id="detail"></iframe>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div class="row" style="margin-top: 150px">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    About Us
+                </h2>
+                <p>
+                    information here.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h2>
+                    Resources
+                </h2>
+                <p>
+                    information here.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h2>
+            Contact
+        </h2>
+        <p>
+            information here.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <p>
+            Copyright © 2021 Power by Dr. Hertz Fan Club
+        </p>
+
+    </div>
+</div>
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
