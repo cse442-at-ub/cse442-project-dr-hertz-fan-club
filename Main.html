@@ -49,6 +49,30 @@
             padding: 12px 10px 12px 10px;
         }
 
+        .navbar-links ul ul {
+            position: absolute;
+            display: inline-block;
+            opacity: 0;
+            visibility: hidden;
+            background-color: rgba(0, 0, 0, 0.767);
+            color: white;
+        }
+
+        .navbar-links ul li:hover > ul {
+            opacity: 1;
+            visibility: visible;
+            color: white;
+        }
+
+        .navbar-links ul ul li {
+            display: list-item;
+            position: relative;
+            color: white;
+        }
+        .navbar-links ul ul li a {
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -56,12 +80,18 @@
 <body>
 <div class="container-fluid">
 
-    <! -- Nav Bar -->
+    <!-- Nav Bar -->
     <div class="col-md-12">
         <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark fixed-top">
 
-            <h1 class="page-header" style="color: white; margin-right: 20px">UB Market</h1>
-            <div class="collapse navbar-collapse">
+            <div class="brand-title-main">
+                UB Market 
+            </div>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>            
 
                 <!--                Searching component-->
                 <div class="mr-auto">
@@ -78,36 +108,35 @@
                             Search
                         </button>
                     </form>
-
-
-
                 </div>
-                <div class="navbar-nav ml-auto">
-<!--                    Change to a real button in future version-->
-                    <a class="btn btn-primary" href="listing.html" target="_blank" style="padding: 12px 20px; border-radius: 4px">
-                        Post
-                    </a>
+                <div class="navbar-links">
+                    <ul>
+    <!--                    Change to a real button in future version-->
+                        <li>
+                            <a class="btn btn-primary" href="listing.html" target="_blank" style="padding: 12px 20px; border-radius: 4px">
+                            Post
+                            </a>
+                        </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size: 20px">Profile</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">My Post</a>
-                            <a class="dropdown-item" href="#">Change Name</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
-                            <div class="dropdown-divider">
-                            </div>
-                            <a class="dropdown-item" href="#">Report Issue</a>
-                        </div>
-                    </li>
-                    <h3 style="color: white">
-                        |
-                    </h3>
-                    <!--                    Change to a real button in future version-->
-                    <a class="btn btn-danger my-2 my-sm-0" style="margin-left: 10px; padding: 12px 20px; border-radius: 4px" href="landing.html">
-                        Log out
-                    </a>
+                        <li class="nav-item">
+                            <a href="#">Profile</a>
+                            <ul>
+                                <li><a class="dropdown-item" href="#">My Post</a></li>
+                                <li><a class="dropdown-item" href="#">Change Name</a></li>
+                                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                                <li><div class="dropdown-divider"></div></li>
+                                <li><a class="dropdown-item" href="#">Report Issue</a></li>
+                            </ul>
+                        </li>
+                        <!--                    Change to a real button in future version-->
+                        <li>
+                            <a class="btn btn-danger my-2 my-sm-0" style="margin-left: 10px; padding: 12px 20px; border-radius: 4px" href="landing.html">
+                            Log out
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+            
         </nav>
     </div>
 
@@ -129,57 +158,35 @@
 </div>
 
 
-    <!-- footer -->
-    <div class="row" style="margin-top: 150px">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>
-                        About Us
-                    </h2>
-                    <p>
-                        information here.
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <h2>
-                        Resources
-                    </h2>
-                    <p>
-                        information here.
-                    </p>
-                </div>
+<!-- footer -->
+<div class="row" style="margin-top: 150px">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    About Us
+                </h2>
+                <p>
+                    information here.
+                </p>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>
-                        Contact
-                    </h2>
-                    <p>
-                        information here.
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <h2>
-                        Help
-                    </h2>
-                    <p>
-                        information here.
-                    </p>
-                    <a href="help.html" class="btn btn-primary stretched-link">Go somewhere</a>
-                </div>
+            <div class="col-md-6">
+                <h2>
+                    Resources
+                </h2>
+                <p>
+                    information here.
+                </p>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <p>
-                Copyright © 2021 Power by Dr. Hertz Fan Club
-            </p>
-
-        </div>
+    <div class="col-md-6">
+        <h2>
+            Contact
+        </h2>
+        <p>
+            information here.
+        </p>
     </div>
 </div>
 <div class="row">
