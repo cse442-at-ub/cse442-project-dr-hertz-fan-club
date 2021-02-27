@@ -46,6 +46,10 @@ img {
     margin: .2rem;
 }
 
+.brand-title-main {
+    font-size: 1.5rem;
+    margin: .2rem;
+}
 .navbar-links ul {
     margin: 0;
     padding: 0;
@@ -82,13 +86,22 @@ img {
     width: 100px;
     background-color: white;
     border-radius: 10px;
+    
 }
 
-@media (max-width: 700px) {
+.navbar-links .dropdown-item {
+    color: white;
+}
+
+
+@media (max-width: 800px) {
     .toggle-button {
         display: flex;
+        
     }
-
+    .brand-title-main {
+        display: none;
+    }
     .navbar-links {
        display: none;
        width: 100%;
@@ -103,6 +116,11 @@ img {
          width: 100%;
          flex-direction: column;
      }
+     .navbar-links ul ul {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-end;
+    }
      
      .navbar-links li a {
          padding: .3rem .6rem;
@@ -112,5 +130,7 @@ img {
          display: flex;
      }
 }
+
+
 
 
