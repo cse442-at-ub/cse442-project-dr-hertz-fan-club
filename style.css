@@ -1,0 +1,272 @@
+
+body {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    margin-top: 20px;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+/*Hide scrollbar*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar {
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.767);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    margin: .2rem;
+}
+
+.brand-title-main {
+    font-size: 1.5rem;
+    margin: .2rem;
+}
+.navbar-links ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    float: right;
+}
+.navbar-links ul li {
+    list-style: none;
+}
+
+.navbar-links ul li a {
+    text-decoration: none;
+    color: white;
+    padding: .5rem;
+    display: block;
+}
+.navbar-links ul li ul {
+    margin: 0;
+    padding: 0;
+    display: block;
+    align-items: center;
+}
+
+.navbar-links ul li ul li {
+    list-style: none;
+    display: none;
+}
+
+.navbar-links ul li ul li a {
+    text-decoration: none;
+    color: white;
+    padding: .5rem;
+    display: block;
+}
+.navbar-links ul li:hover {
+    background-color: rgb(117, 116, 116);
+}
+
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 2rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 50px;
+    background-color: white;
+    border-radius: 10px;
+    
+}
+
+.button-search {
+    margin: 3px 0rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: 1px solid #0073e6;
+    background-color: #0073e6;
+    color: white;
+    font-size: 14px;
+    font-family: sans-serif;
+    padding: 5px 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    
+}
+
+.category-main {
+    height: 2rem;
+    width: 4rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding: 3px 4px 3px 4px;
+}
+
+.search-bar {
+    height: 2rem;
+    width: 100px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    /*background-image: url();*/
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search-bar:focus {
+    width: 48%;
+}
+/* Login page */
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    height: 100vh;
+    margin: -20px 0 50px;
+    background: rgb(231, 233, 236);
+}
+
+.form-container form {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container {
+    overflow: hidden;
+    max-width: 390px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+.button-all {
+    border-radius: 6px;
+    border: 1px solid #0073e6;
+    background-color: #0073e6;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    padding: 10px 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+button a {
+    color: white;
+}
+button:active {
+    transform: scale(0.90);
+}
+
+button:focus {
+    outline: none;
+}
+
+.form-container .pass-link {
+    margin-top: 10px;
+}
+
+.form-container .signup-link {
+    text-align: center;
+    margin: 10px;
+}
+
+
+
+@media (max-width: 800px) {
+    .toggle-button {
+        display: flex;        
+    }
+    .brand-title-main {
+        display: none;
+    }
+    .navbar-links {
+       display: none;
+       width: 100%;
+       text-align: center;
+    }
+    .brand-title-landing {
+        display: contents;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+     .navbar-links ul {
+         width: 100%;
+         flex-direction: column;
+     }
+     .navbar-links ul li ul li {
+         display: block;
+     }
+
+     .navbar-links.active {
+         display: flex;
+     }
+}
+
+
+
+
+

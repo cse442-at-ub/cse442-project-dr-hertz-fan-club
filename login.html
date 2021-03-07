@@ -1,91 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="UB CSE442 Project">
+    <meta name="author" content="Dr. Hertz Fan Club">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title>UB Market</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: sans-serif;
-            height: 100vh;
-            margin: -20px 0 50px;
-            background: rgb(231, 233, 236);
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        .container {
-            overflow: hidden;
-            max-width: 390px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-container form {
-            background: white;
-            display: flex;
-            flex-direction: column;
-            padding: 0 20px;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .form-container input {
-            background: #eee;
-            border: none;
-            padding: 12px 15px;
-            margin: 8px 0;
-            width: 100%;
-        }
-
-        button {
-            border-radius: 20px;
-            border: 1px solid #0073e6;
-            background: #0073e6;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 10px 30px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: transform 80ms ease-in;
-        }
-
-        button:active {
-            transform: scale(0.90);
-        }
-
-        button:focus {
-            outline: none;
-        }
-
-        .form-container .pass-link {
-            margin-top: 10px;
-        }
-
-        .form-container .signup-link {
-            text-align: center;
-            margin: 10px;
-        }
-
-    </style>
 </head>
-<body>
+
+<body class="login">
+    
 <div class="container" id="container">
     <div class="form-container login-in-container">
         <form action="#">
@@ -94,7 +24,7 @@
             <input type="password" placeholder="Password">
             <div class="pass-link">Forgot your password?</div>
             <div class="signup-link">Not a member? <a href="sign_up.html">Signup now</a></div>
-            <button><a href="Main.html">Login</a></button>
+            <button class="button-all"><a href="Main.html">Login</a></button>
         </form>
     </div>
 
