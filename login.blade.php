@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
     <title>UB Market</title>
+
+    <meta name="description" content="UB CSE442 Project">
+    <meta name="author" content="Dr. Hertz Fan Club">
+
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -47,7 +54,7 @@
 
         .form-container input {
             background: #eee;
-            border: none;
+            /*border: none;*/
             padding: 12px 15px;
             margin: 8px 0;
             width: 100%;
@@ -87,17 +94,32 @@
 </head>
 <body>
 <div class="container" id="container">
-    <div class="form-container sign-in-container">
-        <form action="#">
-            <h1>Create Account</h1>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <button><a href="login.html">Sign up</a></button>
+    <div class="form-container login-in-container">
+        <form action="{{ route('login') }}" method="post">
+            <h1>Login</h1>
+            @csrf
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email"
+                   class="@error('email') border-danger @enderror" value="{{old('email')}}">
+            @error('email')
+            <div class="text-danger mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password"
+                   class="@error('password') border-danger @enderror">
+            @error('password')
+            <div class="text-danger mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+            <div class="signup-link">Not a member? <a href="{{route('signup')}}">Signup now</a></div>
+            <button type="submit">Login</button>
         </form>
     </div>
 
 </div>
 
 </body>
-</html> 
+</html>
