@@ -57,10 +57,6 @@ Route::get('/details', function () {
 
 })->name('details');
 
-Route::get('/faq', function () {
-    return view('faq');
-
-})->name('faq');
 
 Route::get('/contactus', function () {
     return view('contactus');

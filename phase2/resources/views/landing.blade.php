@@ -12,39 +12,97 @@
 
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #navbar {
+            overflow: hidden;
+            background-color: #3b3b3b;
+            padding: 90px 10px;
+            transition: 0.4s;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 99;
+        }
+
+        #navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
+
+        #navbar #logo {
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.4s;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        #navbar-right {
+            float: right;
+        }
+
+        @media screen and (max-width: 580px) {
+            #navbar {
+                padding: 20px 10px !important;
+            }
+
+            #navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            #navbar-right {
+                float: none;
+            }
+        }
+    </style>
 </head>
-<body>
-<nav class="navbar fixed-top">
-    <!-- Header -->
-    <div class="brand-title">
-        UB Market <small>A place for UB community</small>
-    </div>
-    <a href="#" class="toggle-button">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body style="min-width: 320px">
+
+<div id="navbar">
+    <a id="title" style="font-size: 35px">
+        UB Market
     </a>
-    <div class="navbar-links">
-        <ul>
-            <li>
-                <a href="{{route('main')}}">Home</a>
-            </li>
-            <li>
-                <a href="#features">Features</a>
-            </li>
-            <li>
-                <a href="#restriction">Restriction</a>
-            </li>
-            <li>
-                <a href="{{route('login')}}">LOG IN</a>
-            </li>
-        </ul>
+    <a id="subtitle" style="font-size: 25px">A place for UB community</a>
+    <div id="navbar-right">
+
+        <a href="{{route('main')}}">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#restriction">Restriction</a>
+
+        <a class="btn btn-primary" href="{{route('login')}}">LOG IN</a>
+
     </div>
 
-</nav>
+</div>
 
-<div class="container-fluid" style="margin-top: 15%">
+<div class="container" style="margin-top: 400px">
 
     <!-- sign up -->
     <div class="row">
@@ -54,7 +112,7 @@
                     Welcome to UB Market
                 </h2>
                 <p>
-                    Do you want to sell or buy from UB community? Come and join us!
+                    Do you want to sell or buy something from UB community? Come and join us!
                 </p>
                 <p>
                     <a class="btn btn-primary btn-large" href="{{route('signup')}}">Sign up</a>
@@ -159,14 +217,14 @@
             <h2>
                 Maybe tutorial video here?
             </h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- footer -->
-    <div class="row" style="margin-top: 150px">
+    <div class="row text-center" style="margin-top: 150px">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-6">
@@ -174,7 +232,7 @@
                         About Us
                     </h2>
                     <p>
-                        information here.
+                        <a href="{{ route('aboutus') }}" target="_blank"> About Us </a>
                     </p>
                 </div>
                 <div class="col-md-6">
@@ -188,36 +246,25 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h2>
-                Contact
-            </h2>
-            <p>
-                information here.
-            </p>
-            <a href="{{route('faq')}}">Go somewhere</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>
+                        Contact
+                    </h2>
+                    <p>
+                        <a href="{{ route('contactus') }}" target="_blank"> Contact Us </a>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h2>
+                        Help
+                    </h2>
+                    <p>
+                        <a href="{{ route('faq') }}" target="_blank"> FAQ </a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <!--        <div class="col-md-6">-->
-        <!--            <div class="row">-->
-        <!--                <div class="col-md-6">-->
-        <!--                    <h2>-->
-        <!--                        Heading-->
-        <!--                    </h2>-->
-        <!--                    <p>-->
-        <!--                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,-->
-        <!--                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem-->
-        <!--                        malesuada magna mollis euismod. Donec sed odio dui.-->
-        <!--                    </p>-->
-        <!--                </div>-->
-        <!--                <div class="col-md-6">-->
-        <!--                    <h2>-->
-        <!--                        Contact-->
-        <!--                    </h2>-->
-        <!--                    <p>-->
-        <!--						information here.-->
-        <!--                    </p>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
     <div class="row">
         <div class="col-md-12 text-center">
@@ -228,7 +275,22 @@
         </div>
     </div>
 </div>
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
 
+    function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("navbar").style.padding = "30px 10px";
+            document.getElementById("title").style.fontSize = "25px";
+            document.getElementById("subtitle").style.fontSize = "15px";
+        } else {
+            document.getElementById("navbar").style.padding = "80px 10px";
+            document.getElementById("title").style.fontSize = "35px";
+            document.getElementById("subtitle").style.fontSize = "25px";
+        }
+    }
+</script>
 <script src={{asset('js/app.js')}}></script>
 
 </body>
