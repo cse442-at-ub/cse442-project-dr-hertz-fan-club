@@ -293,7 +293,7 @@
                         About Us
                     </h2>
                     <p>
-                        <a href="{{ route('aboutus') }}" target="_blank"> About Us </a>
+                        <a href="{{ route('aboutus') }}" target="_blank">About Us</a>
                     </p>
                 </div>
                 <div class="col-md-6">

@@ -68,6 +68,12 @@ Route::get('/contactus', [ContactController::class, 'index'])->name('contactus')
 
 Route::post('/contactus', [ContactController::class, 'store']);
 
+
+Route::get('/aboutus', function () {
+    return view('aboutus');
+
+})->name('aboutus');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
