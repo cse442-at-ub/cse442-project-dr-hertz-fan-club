@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,13 +60,13 @@ Route::get('/details', function () {
 
 Route::get('/faq', function () {
     return view('faq');
+
 })->name('faq');
 
-Route::get('/contactus', function () {
-    return view('contactus');
 
-})->name('contactus');
+Route::get('/contactus', [ContactController::class, 'index'])->name('contactus');
 
+Route::post('/contactus', [ContactController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
