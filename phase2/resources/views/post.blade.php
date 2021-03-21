@@ -76,7 +76,7 @@
             <h4 class="text-center">
                 Textbook Contact Information
             </h4>
-            <form role="form">
+            <form action="{{ route('post') }}" method="post">
                 <div class="form-group">
 
                     <label for="inputNameTextbook">
@@ -260,7 +260,7 @@
             <h4 class="text-center">
                 Housing Contact Information
             </h4>
-            <form role="form">
+            <form action="{{ route('post') }}" method="post">
                 <div class="form-group">
 
                     <label for="inputNameHousing">
@@ -375,7 +375,7 @@
             <h4 class="text-center">
                 Roommate Contact Information
             </h4>
-            <form role="form">
+            <form action="{{ route('post') }}" method="post">
                 <div class="form-group">
 
                     <label for="inputNameRoommate">
