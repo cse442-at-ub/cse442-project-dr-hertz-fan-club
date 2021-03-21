@@ -20,13 +20,13 @@
     <nav class="navbar fixed-top">
         <!-- Header -->
         <div class="brand-title">
-            UB Market <small>A place for UB community</small>
+            UB Market
+            <small>
+                @auth
+                    <p>Hello, {{ auth()->user()->name }}</p>
+                @endauth
+            </small>
         </div>
-        <a href="#" class="toggle-button">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </a>
         <div class="navbar-links">
             <ul>
                 <li>
@@ -49,32 +49,33 @@
             </h3>
             <br>
             <br>
-            <form action="{{ route('landing') }}">
-
+            <form action="{{ route('contactus') }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="inputName">
                         Name
                     </label>
-                    <input class="form-control" id="inputName" placeholder="Required" required>
+                    <input class="form-control" id="inputName" name="inputName" placeholder="Required" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail">
                         Email
                     </label>
-                    <input class="form-control" id="inputEmail" placeholder="Required" required>
+                    <input class="form-control" id="inputEmail" name="inputEmail" placeholder="Required" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputPhoneNumber">
                         Phone Number
                     </label>
-                    <input class="form-control" id="inputPhoneNumber" placeholder="Optional">
+                    <input class="form-control" id="inputPhoneNumber" name ="inputPhoneNumber" placeholder="Optional">
                 </div>
-                <h6> Topic:
-                </h6>
                 <div class="dropdown">
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" required>
+                    <label for="topic">
+                         Topic:
+                    </label>
+                    <select class="btn btn-outline-primary dropdown-toggle" id="topic" name="topic" type="button" data-toggle="dropdown" required>
                         <option class="dropdown-item" value="" selected disabled> Please Select A Topic</option>
                         <option class="dropdown-item" value="Unable to sign up or log in"> Unable to sign up or log in</option>
                         <option class="dropdown-item" value="Request to delete account"> Request to delete account</option>
@@ -84,9 +85,9 @@
                     </select>
                 </div>
                 <br>
-                <h6> Description:
-                </h6>
-                <label for="contactDescription"></label><textarea class="form-control" id="contactDescription" rows="10" placeholder="Required" required></textarea>
+                <label for="contactDescription">Description:</label>
+                <textarea class="form-control" name="contactDescription" id="contactDescription" rows="10" placeholder="Required" required>
+                </textarea>
                 <br>
                 <div class="form-group">
 
