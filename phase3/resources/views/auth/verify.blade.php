@@ -94,46 +94,23 @@
 
     </style>
 </head>
-<body onload="preventEdit()">
+<body>
 <div class="container" id="container">
 
     <div class="form-container sign-in-container">
-        <form action="{{ route('signup') }}" method="post">
+        <form action="{{ route('verify') }}" method="post" onsubmit="return checkUBEmail()">
             @csrf
-            <h1>Create Account</h1>
-            <label for="name" class="sr-only">Name</label>
-            <input type="text" name="name" id="name" placeholder="Name" class="@error('name') border-danger @enderror"
-                   value="{{old('name')}}">
-            @error('name')
-            <div class="text-danger mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
-            <label for="email" class="sr-only">Email</label>
-            <input type="email" name="email" id="email" placeholder="{{ request('email') }}"
-                   class="@error('email') border-danger @enderror" value="{{ request('email') }}" onchange="preventEdit()" readonly>
+            <div> Please type your email. <div>
+            <div> Your email MUST end with '@buffalo.edu'. <div>
+            <label for="useremail" class="sr-only">UB Email</label>
+            <input type="email" name="useremail" id="useremail" placeholder="Email" value=""
+                   class="@error('email') border-danger @enderror">
             @error('email')
             <div class="text-danger mt-2 text-sm">
                 {{ $message }}
             </div>
             @enderror
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password"
-                   class="@error('password') border-danger @enderror">
-            @error('password')
-            <div class="text-danger mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
-            <label for="password_confirmation" class="sr-only">Password Again</label>
-            <input type="password" name="password_confirmation" id="password_confirmation"
-                   placeholder="Repeat your password" class="@error('password_confirmation') border-danger @enderror">
-            @error('password_confirmation')
-            <div class="text-danger mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
-            <button type="submit">Sign up</button>
+            <button type="submit">Verify Email</button>
         </form>
     </div>
 
@@ -141,8 +118,17 @@
 
 </body>
 </html>
+
 <script type="text/javascript">
-    function preventEdit() {
-        document.getElementById('email').value = "{{ request('email') }}"
+    function checkUBEmail() {
+        if (/@buffalo.edu\s*$/.test(document.getElementById('useremail').value)) {
+            alert('A verification link as been sent to your email. Please check your email to complete your registration!');
+            return true;
+        } else {
+            alert("Your email does not end with '@buffalo.edu'.");
+            return false;
+        }
     }
 </script>
+
+

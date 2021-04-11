@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +76,12 @@ Route::post('/contactus', [ContactController::class, 'store']);
 Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
+
+------- Verify email stuff
+
+Route::get('/verify', [VerifyEmailController::class, 'index'])->name('verify');
+
+Route::post('/verify', [VerifyEmailController::class, 'store']);
 
 
 //------------- For display function--------

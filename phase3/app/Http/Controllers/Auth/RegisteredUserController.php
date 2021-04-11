@@ -17,9 +17,14 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('auth.signup');
+        if (! $request->hasValidSignature()) {
+            abort(401);
+        }
+        $email = $request->input('useremail');
+        $data['useremail'] = $email;
+        return view('auth.signup', $data);
     }
 
     /**
