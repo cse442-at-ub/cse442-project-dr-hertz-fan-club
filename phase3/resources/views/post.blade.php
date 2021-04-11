@@ -614,7 +614,7 @@
     function scrollFunction() {
         var currentScrollPos = window.pageYOffset;
         var width = document.body.clientWidth;
-        if (width <= 450) {
+        if (width <= 375) {
             if (prevScrollpos > currentScrollPos) {
                 document.getElementById("navbar").style.top = "0";
             } else {

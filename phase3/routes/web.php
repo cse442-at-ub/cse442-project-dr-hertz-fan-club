@@ -5,10 +5,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DisplayUserController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\DisplayPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,10 +53,10 @@ Route::get('/post', function () {
 
 })->name('post');
 
-Route::get('/cards', function () {
-    return view('cards');
-
-})->name('cards');
+//Route::get('/cards', function () {
+//    return view('cards');
+//
+//})->name('cards');
 
 Route::get('/details', function () {
     return view('details');
@@ -76,13 +78,28 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
 
+//------------ Forgot Password stuff
+
+Route::get('/forgotpassword', [VerifyEmailController::class, 'index'])->name('verify');
+
+Route::post('/forgotpassword', [VerifyEmailController::class, 'store']);
+
+//------------- Verify email stuff
+
+Route::get('/verify', [VerifyEmailController::class, 'index'])->name('verify');
+
+Route::post('/verify', [VerifyEmailController::class, 'store']);
+
 
 //------------- For display function--------
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/dashboard', [PostController::class,'index'])->name('posts');
+Route::get('/dashboard', [DisplayUserController::class, 'index'])->name('names');
+
+
+Route::get('/cards', [DisplayPostController::class, 'index'])->name('posts');
 
 
 //----------password reset function----------

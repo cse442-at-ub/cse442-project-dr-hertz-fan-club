@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostController
+class DisplayUserController
 {
     public function index()
     {

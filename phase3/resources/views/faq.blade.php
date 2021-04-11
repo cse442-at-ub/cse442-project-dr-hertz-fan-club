@@ -112,7 +112,7 @@
                             Resources
                         </h2>
                         <p>
-                            information here.
+                            <a href="https://laravel.com/docs/8.x/releases" target="_blank"> Laravel </a>
                         </p>
                     </div>
                 </div>
