@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactController; 
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
@@ -68,9 +68,9 @@ Route::get('/faq', function () {
 })->name('faq');
 
 
-Route::get('/contactus', [ContactController::class, 'index'])->name('contactus');
-
-Route::post('/contactus', [ContactController::class, 'store']);
+Route::get('/contactus', [ContactController::class, 'index'])->name('contactus'); 
+ 
+Route::post('/contactus', [ContactController::class, 'store']); 
 
 
 Route::get('/aboutus', function () {
