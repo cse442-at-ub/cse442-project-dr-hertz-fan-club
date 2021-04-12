@@ -162,25 +162,12 @@
 
         <div class="d-flex" id="navbar-right">
 
-            {{--            <li class="nav-item">--}}
-            {{--                <a class="btn btn-dark" href="#" style="padding: 12px 20px; border-radius: 4px">Profile</a>--}}
-            {{--                <ul>--}}
-            {{--                    <li><a class="dropdown-item" href="#">My Post</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Change Name</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Change Password</a></li>--}}
-            {{--                    <li>--}}
-            {{--                        <div class="dropdown-divider"></div>--}}
-            {{--                    </li>--}}
-            {{--                    <li><a class="dropdown-item" href="{{route('contactus')}}">Report Issue</a></li>--}}
-            {{--                </ul>--}}
-            {{--            </li>--}}
-
             <a class="btn btn-primary" href="{{route('post')}}"
                style="padding: 12px 20px; border-radius: 4px">
                 Post
             </a>
 
-            <a class="btn btn-info" href="{{route('reset.password')}}"
+            <a class="btn btn-info" href="{{route('profile')}}"
                style="padding: 12px 20px; border-radius: 4px">
                 Profile
             </a>

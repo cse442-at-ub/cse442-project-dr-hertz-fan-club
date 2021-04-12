@@ -25,8 +25,8 @@
                     <img class="card-img-top"
                          src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $post->course }}{{ $post->course_num }}</h5>
-                        <p class="card-text">{{ $post->description }}</p>
+                        <h5 class="card-title">{{ $post->name }}</h5>
+                        <p class="card-text">{{ $post->course }}{{ $post->course_num }}</p>
                         <a class="btn btn-primary btn-large" onclick="render_detail(t)">Learn more</a>
                     </div>
                 </div>

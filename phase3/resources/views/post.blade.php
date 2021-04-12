@@ -149,183 +149,164 @@
             <h4 class="text-center">
                 Textbook Contact Information
             </h4>
-            <form role="form">
-                <div class="form-group">
-
-                    <label for="inputNameTextbook">
-                        Name
-                    </label>
-                    <input class="form-control" id="inputNameTextbook" placeholder="Required">
-                </div>
-                <div class="form-group">
-
-                    <label for="inputEmailTextbook">
-                        Email
-                    </label>
-                    <input class="form-control" id="inputEmailTextbook" placeholder="Required">
-                </div>
-                <div class="form-group">
-
-                    <label for="inputPhoneNumberTextbook">
-                        Phone Number
-                    </label>
-                    <input class="form-control" id="inputPhoneNumberTextbook" placeholder="Required">
-                </div>
-
-                <br>
+            <form role="form" action="{{ route('post')}}" method="post">
+	    @csrf
+		
+                 <br>
                 <h4 class="text-center">
                     Textbook Description
                 </h4>
                 <br>
-                <h6> Textbook Condition:
-                </h6>
-                <div class="dropdown">
+                <h6> Textbook Name:
+            </h6>
+            <input name="textbook_name" type="text" class="form-control" >
+            <br>
+            <h6> Textbook Condition:
+            </h6>
+            <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            id="condition">
-                        <option class="dropdown-item" value="" selected disabled> Select Condition</option>
-                        <option class="dropdown-item" value="Brand New"> Brand New</option>
-                        <option class="dropdown-item" value="Like New"> Like New</option>
-                        <option class="dropdown-item" value="Very Good"> Very Good</option>
-                        <option class="dropdown-item" value="Good"> Good</option>
-                        <option class="dropdown-item" value="Poor"> Poor</option>
-                    </select>
-                </div>
-                <br>
-                <h6> Course
-                </h6>
-                <div class="dropdown">
+                <select name= "textbook_condition" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+                    <option class="dropdown-item" value="Brand New" id="Brand New"> Brand New </option>
+                    <option class="dropdown-item" value="Like New" id="Like New"> Like New </option>
+                    <option class="dropdown-item" value="Very Good" id=> Very Good </option>
+                    <option class="dropdown-item" value="Good" id=> Good </option>
+                    <option class="dropdown-item" value="Poor" id=> Poor </option>
+                </select>
+            </div>
+            <br>
+            <h6> Course
+            </h6>
+            <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            id="course">
-                        <option class="dropdown-item" value="None"> None</option>
-                        <option class="dropdown-item" value="AAS"> AAS</option>
-                        <option class="dropdown-item" value="ASL"> ASL</option>
-                        <option class="dropdown-item" value="AMS"> AMS</option>
-                        <option class="dropdown-item" value="APY"> APY</option>
-                        <option class="dropdown-item" value="ARI"> ARI</option>
-                        <option class="dropdown-item" value="ARC"> ARC</option>
-                        <option class="dropdown-item" value="ART"> ART</option>
-                        <option class="dropdown-item" value="AHI"> AHI</option>
-                        <option class="dropdown-item" value="AS"> AS</option>
-                        <option class="dropdown-item" value="BCH"> BCH</option>
-                        <option class="dropdown-item" value="BIO"> BIO</option>
-                        <option class="dropdown-item" value="BE"> BE</option>
-                        <option class="dropdown-item" value="BMI"> BMI</option>
-                        <option class="dropdown-item" value="BMS"> BMS</option>
-                        <option class="dropdown-item" value="STA"> STA</option>
-                        <option class="dropdown-item" value="CE"> CE</option>
-                        <option class="dropdown-item" value="CHE"> CHE</option>
-                        <option class="dropdown-item" value="CHI"> CHI</option>
-                        <option class="dropdown-item" value="CIE"> CIE</option>
-                        <option class="dropdown-item" value="CL"> CL</option>
-                        <option class="dropdown-item" value="COM"> COM</option>
-                        <option class="dropdown-item" value="CDS"> CDS</option>
-                        <option class="dropdown-item" value="CHB"> CHB</option>
-                        <option class="dropdown-item" value="COL"> COL</option>
-                        <option class="dropdown-item" value="CDA"> CDA</option>
-                        <option class="dropdown-item" value="CSE"> CSE</option>
-                        <option class="dropdown-item" value="CPM"> CPM</option>
-                        <option class="dropdown-item" value="CEP"> CEP</option>
-                        <option class="dropdown-item" value="DAC"> DAC</option>
-                        <option class="dropdown-item" value="ECO"> ECO</option>
-                        <option class="dropdown-item" value="ELP"> ELP</option>
-                        <option class="dropdown-item" value="EE"> EE</option>
-                        <option class="dropdown-item" value="EAS"> EAS</option>
-                        <option class="dropdown-item" value="ENG"> ENG</option>
-                        <option class="dropdown-item" value="ESL"> ESL</option>
-                        <option class="dropdown-item" value="EVS"> EVS</option>
-                        <option class="dropdown-item" value="END"> END</option>
-                        <option class="dropdown-item" value="ES"> ES</option>
-                        <option class="dropdown-item" value="FR"> FR</option>
-                        <option class="dropdown-item" value="MGG"> MGG</option>
-                        <option class="dropdown-item" value="GEO"> GEO</option>
-                        <option class="dropdown-item" value="GLY"> GLY</option>
-                        <option class="dropdown-item" value="GER"> GER</option>
-                        <option class="dropdown-item" value="GGS"> GGS</option>
-                        <option class="dropdown-item" value="GR"> GR</option>
-                        <option class="dropdown-item" value="GRE"> GRE</option>
-                        <option class="dropdown-item" value="HEB"> HEB</option>
-                        <option class="dropdown-item" value="HIN"> HIN</option>
-                        <option class="dropdown-item" value="HIS"> HIS</option>
-                        <option class="dropdown-item" value="HON"> HON</option>
-                        <option class="dropdown-item" value="IE"> IE</option>
-                        <option class="dropdown-item" value="ITA"> ITA</option>
-                        <option class="dropdown-item" value="JPN"> JPN</option>
-                        <option class="dropdown-item" value="JDS"> JDS</option>
-                        <option class="dropdown-item" value="KOR"> KOR</option>
-                        <option class="dropdown-item" value="LAT"> LAT</option>
-                        <option class="dropdown-item" value="LLS"> LLS</option>
-                        <option class="dropdown-item" value="LAW"> LAW</option>
-                        <option class="dropdown-item" value="ULC"> ULC</option>
-                        <option class="dropdown-item" value="LAI"> LAI</option>
-                        <option class="dropdown-item" value="LIS"> LIS</option>
-                        <option class="dropdown-item" value="LIN"> LIN</option>
-                        <option class="dropdown-item" value="MGA"> MGA</option>
-                        <option class="dropdown-item" value="MGE"> MGE</option>
-                        <option class="dropdown-item" value="MGF"> MGF</option>
-                        <option class="dropdown-item" value="MGI"> MGI</option>
-                        <option class="dropdown-item" value="MGM"> MGM</option>
-                        <option class="dropdown-item" value="MGO"> MGO</option>
-                        <option class="dropdown-item" value="MGQ"> MGQ</option>
-                        <option class="dropdown-item" value="MGS"> MGS</option>
-                        <option class="dropdown-item" value="MGT"> MGT</option>
-                        <option class="dropdown-item" value="MDI"> MDI</option>
-                        <option class="dropdown-item" value="MTH"> MTH</option>
-                        <option class="dropdown-item" value="MAE"> MAE</option>
-                        <option class="dropdown-item" value="DMS"> DMS</option>
-                        <option class="dropdown-item" value="MT"> MT</option>
-                        <option class="dropdown-item" value="MCH"> MCH</option>
-                        <option class="dropdown-item" value="MIC"> MIC</option>
-                        <option class="dropdown-item" value="MLS"> MLS</option>
-                        <option class="dropdown-item" value="MUS"> MUS</option>
-                        <option class="dropdown-item" value="MTR"> MTR</option>
-                        <option class="dropdown-item" value="NRS"> NRS</option>
-                        <option class="dropdown-item" value="NMD"> NMD</option>
-                        <option class="dropdown-item" value="NTR"> NTR</option>
-                        <option class="dropdown-item" value="OT"> OT</option>
-                        <option class="dropdown-item" value="MGB"> MGB</option>
-                        <option class="dropdown-item" value="PAS"> PAS</option>
-                        <option class="dropdown-item" value="PHC"> PHC</option>
-                        <option class="dropdown-item" value="PMY"> PMY</option>
-                        <option class="dropdown-item" value="PHM"> PHM</option>
-                        <option class="dropdown-item" value="PHI"> PHI</option>
-                        <option class="dropdown-item" value="PHY"> PHY</option>
-                        <option class="dropdown-item" value="PGY"> PGY</option>
-                        <option class="dropdown-item" value="POL"> POL</option>
-                        <option class="dropdown-item" value="PS"> PS</option>
-                        <option class="dropdown-item" value="PSC"> PSC</option>
-                        <option class="dropdown-item" value="PSY"> PSY</option>
-                        <option class="dropdown-item" value="PUB"> PUB</option>
-                        <option class="dropdown-item" value="NBC"> NBC</option>
-                        <option class="dropdown-item" value="REC"> REC</option>
-                        <option class="dropdown-item" value="RLL"> RLL</option>
-                        <option class="dropdown-item" value="RUS"> RUS</option>
-                        <option class="dropdown-item" value="SSC"> SSC</option>
-                        <option class="dropdown-item" value="SW"> SW</option>
-                        <option class="dropdown-item" value="SOC"> SOC</option>
-                        <option class="dropdown-item" value="SPA"> SPA</option>
-                        <option class="dropdown-item" value="TH"> TH</option>
-                        <option class="dropdown-item" value="NBS"> NBS</option>
-                        <option class="dropdown-item" value="UGC"> UGC</option>
-                        <option class="dropdown-item" value="UE"> UE</option>
-                        <option class="dropdown-item" value="NSG"> NSG</option>
-                        <option class="dropdown-item" value="YID"> YID</option>
-                    </select>
-                </div>
-                <br>
-                <h6> Course Number:
-                </h6>
-                <input class="form-control" id="inputCourseNumber" placeholder="Optional">
-                <br>
-                <h6> Description:
-                </h6>
-                <textarea class="form-control" id="textbookDescription" rows="10" placeholder="Required"></textarea>
-                <br>
-                <button type="submit" class="btn btn-success btn-block">
-                    Create A Textbook Post
-                </button>
-            </form>
+                <select name="course" class="btn btn-outline-primary dropdown-toggle"  data-toggle="dropdown">
+                    <option class="dropdown-item" value="None"> None </option>
+                    <option class="dropdown-item" value="AAS"> AAS </option>
+                    <option class="dropdown-item" value="ASL"> ASL </option>
+                    <option class="dropdown-item" value="AMS"> AMS </option>
+                    <option class="dropdown-item" value="APY"> APY </option>
+                    <option class="dropdown-item" value="ARI"> ARI </option>
+                    <option class="dropdown-item" value="ARC"> ARC </option>
+                    <option class="dropdown-item" value="ART"> ART </option>
+                    <option class="dropdown-item" value="AHI"> AHI </option>
+                    <option class="dropdown-item" value="AS"> AS </option>
+                    <option class="dropdown-item" value="BCH"> BCH </option>
+                    <option class="dropdown-item" value="BIO"> BIO </option>
+                    <option class="dropdown-item" value="BE"> BE </option>
+                    <option class="dropdown-item" value="BMI"> BMI </option>
+                    <option class="dropdown-item" value="BMS"> BMS </option>
+                    <option class="dropdown-item" value="STA"> STA </option>
+                    <option class="dropdown-item" value="CE"> CE </option>
+                    <option class="dropdown-item" value="CHE"> CHE </option>
+                    <option class="dropdown-item" value="CHI"> CHI </option>
+                    <option class="dropdown-item" value="CIE"> CIE </option>
+                    <option class="dropdown-item" value="CL"> CL </option>
+                    <option class="dropdown-item" value="COM"> COM </option>
+                    <option class="dropdown-item" value="CDS"> CDS </option>
+                    <option class="dropdown-item" value="CHB"> CHB </option>
+                    <option class="dropdown-item" value="COL"> COL </option>
+                    <option class="dropdown-item" value="CDA"> CDA </option>
+                    <option class="dropdown-item" value="CSE"> CSE </option>
+                    <option class="dropdown-item" value="CPM"> CPM </option>
+                    <option class="dropdown-item" value="CEP"> CEP </option>
+                    <option class="dropdown-item" value="DAC"> DAC </option>
+                    <option class="dropdown-item" value="ECO"> ECO </option>
+                    <option class="dropdown-item" value="ELP"> ELP </option>
+                    <option class="dropdown-item" value="EE"> EE </option>
+                    <option class="dropdown-item" value="EAS"> EAS </option>
+                    <option class="dropdown-item" value="ENG"> ENG </option>
+                    <option class="dropdown-item" value="ESL"> ESL </option>
+                    <option class="dropdown-item" value="EVS"> EVS </option>
+                    <option class="dropdown-item" value="END"> END </option>
+                    <option class="dropdown-item" value="ES"> ES </option>
+                    <option class="dropdown-item" value="FR"> FR </option>
+                    <option class="dropdown-item" value="MGG"> MGG </option>
+                    <option class="dropdown-item" value="GEO"> GEO </option>
+                    <option class="dropdown-item" value="GLY"> GLY </option>
+                    <option class="dropdown-item" value="GER"> GER </option>
+                    <option class="dropdown-item" value="GGS"> GGS </option>
+                    <option class="dropdown-item" value="GR"> GR </option>
+                    <option class="dropdown-item" value="GRE"> GRE </option>
+                    <option class="dropdown-item" value="HEB"> HEB </option>
+                    <option class="dropdown-item" value="HIN"> HIN </option>
+                    <option class="dropdown-item" value="HIS"> HIS </option>
+                    <option class="dropdown-item" value="HON"> HON </option>
+                    <option class="dropdown-item" value="IE"> IE </option>
+                    <option class="dropdown-item" value="ITA"> ITA </option>
+                    <option class="dropdown-item" value="JPN"> JPN </option>
+                    <option class="dropdown-item" value="JDS"> JDS </option>
+                    <option class="dropdown-item" value="KOR"> KOR </option>
+                    <option class="dropdown-item" value="LAT"> LAT </option>
+                    <option class="dropdown-item" value="LLS"> LLS </option>
+                    <option class="dropdown-item" value="LAW"> LAW </option>
+                    <option class="dropdown-item" value="ULC"> ULC </option>
+                    <option class="dropdown-item" value="LAI"> LAI </option>
+                    <option class="dropdown-item" value="LIS"> LIS </option>
+                    <option class="dropdown-item" value="LIN"> LIN </option>
+                    <option class="dropdown-item" value="MGA"> MGA </option>
+                    <option class="dropdown-item" value="MGE"> MGE </option>
+                    <option class="dropdown-item" value="MGF"> MGF </option>
+                    <option class="dropdown-item" value="MGI"> MGI </option>
+                    <option class="dropdown-item" value="MGM"> MGM </option>
+                    <option class="dropdown-item" value="MGO"> MGO </option>
+                    <option class="dropdown-item" value="MGQ"> MGQ </option>
+                    <option class="dropdown-item" value="MGS"> MGS </option>
+                    <option class="dropdown-item" value="MGT"> MGT </option>
+                    <option class="dropdown-item" value="MDI"> MDI </option>
+                    <option class="dropdown-item" value="MTH"> MTH </option>
+                    <option class="dropdown-item" value="MAE"> MAE </option>
+                    <option class="dropdown-item" value="DMS"> DMS </option>
+                    <option class="dropdown-item" value="MT"> MT </option>
+                    <option class="dropdown-item" value="MCH"> MCH </option>
+                    <option class="dropdown-item" value="MIC"> MIC </option>
+                    <option class="dropdown-item" value="MLS"> MLS </option>
+                    <option class="dropdown-item" value="MUS"> MUS </option>
+                    <option class="dropdown-item" value="MTR"> MTR </option>
+                    <option class="dropdown-item" value="NRS"> NRS </option>
+                    <option class="dropdown-item" value="NMD"> NMD </option>
+                    <option class="dropdown-item" value="NTR" id=> NTR </option>
+                    <option class="dropdown-item" value="OT" id=> OT </option>
+                    <option class="dropdown-item" value="MGB" id=> MGB </option>
+                    <option class="dropdown-item" value="PAS" id=> PAS </option>
+                    <option class="dropdown-item" value="PHC" id=> PHC </option>
+                    <option class="dropdown-item" value="PMY" id=> PMY </option>
+                    <option class="dropdown-item" value="PHM" id=> PHM </option>
+                    <option class="dropdown-item" value="PHI" id=> PHI </option>
+                    <option class="dropdown-item" value="PHY" id=> PHY </option>
+                    <option class="dropdown-item" value="PGY" id=> PGY </option>
+                    <option class="dropdown-item" value="POL" id=> POL </option>
+                    <option class="dropdown-item" value="PS" id=> PS </option>
+                    <option class="dropdown-item" value="PSY" id=> PSY </option>
+                    <option class="dropdown-item" value="PUB" id=> PUB </option>
+                    <option class="dropdown-item" value="NBC" id=> NBC </option>
+                    <option class="dropdown-item" value="REC" id=> REC </option>
+                    <option class="dropdown-item" value="RLL" id=> RLL </option>
+                    <option class="dropdown-item" value="RUS" id=> RUS </option>
+                    <option class="dropdown-item" value="SSC" id=> SSC </option>
+                    <option class="dropdown-item" value="SW" id=> SW </option>
+                    <option class="dropdown-item" value="SOC" id=> SOC </option>
+                    <option class="dropdown-item" value="SPA" id=> SPA </option>
+                    <option class="dropdown-item" value="TH" id=> TH </option>
+                    <option class="dropdown-item" value="NBS" id=> NBS </option>
+                    <option class="dropdown-item" value="UGC" id=> UGC </option>
+                    <option class="dropdown-item" value="UE" id=> UE </option>
+                    <option class="dropdown-item" value="NSG" id=> NSG </option>
+                    <option class="dropdown-item" value="YID" id="YID"> YID </option>
+                </select>
+            </div>
+            <br>
+            <h6> Course Number:
+            </h6>
+            <input type="text" name="course_num" class="form-control" >
+            <br>
+            <h6> Description:
+            </h6>
+            <textarea class="form-control" name="textbookDescription" rows="10" required></textarea>
+	    <br>
+    	    <br>
+            <input type="submit" name="create"  class="btn btn-success btn-block" value= "Post" \>
+            <br>
+	<br>
+    </form>
         </div>
     </div>
     <div class="row">
