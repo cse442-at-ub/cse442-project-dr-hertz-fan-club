@@ -11,16 +11,11 @@ class DisplayPostController
     public function index()
     {
         //$posts = DB::select('select * from textbook');
-        $posts = DB::table('textbook')->get();
+        $posts = DB::table('textbook')->orderByDesc('time')->get();
 
         return view('cards', [
             'posts' => $posts
         ]);
-    }
-
-    public function detail()
-    {
-
     }
 
 }

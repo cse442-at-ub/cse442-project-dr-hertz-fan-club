@@ -114,7 +114,7 @@
                 {{ $message }}
             </div>
             @enderror
-            <div class="signup-link">Not a member? <a href="{{route('signup')}}">Signup now</a></div>
+            <div class="signup-link">Not a member? <a href="{{route('verify')}}">Signup now</a></div>
             <button type="submit">Login</button>
         </form>
     </div>

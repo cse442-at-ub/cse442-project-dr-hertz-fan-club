@@ -6,8 +6,10 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DisplayUserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DisplayPostController;
@@ -47,12 +49,6 @@ Route::get('/main', function () {
     return view('main');
 })->name('main');
 
-
-Route::get('/post', function () {
-    return view('post');
-
-})->name('post');
-
 //Route::get('/cards', function () {
 //    return view('cards');
 //
@@ -68,6 +64,12 @@ Route::get('/faq', function () {
 
 })->name('faq');
 
+//------------ Post page
+
+Route::get('/post', [PostController::class, 'index'])->middleware('auth')->name('post');
+Route::post('/post', [PostController::class, 'store'])->middleware('auth');
+
+//----------- Contact us page
 
 Route::get('/contactus', [ContactController::class, 'index'])->name('contactus');
 
@@ -107,7 +109,9 @@ Route::get('/reset/password', [PasswordResetController::class,'create'])->middle
 
 Route::post('/reset/password', [PasswordResetController::class,'store'])->middleware('auth');
 
-
+//-----------profile page------------------
+Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
 
 
 require __DIR__.'/auth.php';
+

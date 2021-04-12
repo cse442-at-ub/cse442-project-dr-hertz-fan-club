@@ -120,9 +120,7 @@
             </div>
         </div>
         <div class="col-md-6 text-center">
-            <h2>
-                image here
-            </h2>
+            <img src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
         </div>
     </div>
 
@@ -138,18 +136,21 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card">
-                        <img class="card-img-top" alt="Feature1"
-                             src="https://grad.buffalo.edu/content/grad/explore/about/visit/_jcr_content/par/image.img.680.244.jpg/1586178528306.jpg">
-                        <div class="card-block">
-                            <h5 class="card-title">
-                                Card title
-                            </h5>
-                            <p class="card-text">
+                    <img class="img" style="width: 200px"
+                         src="{{ asset('image/money-box.gif') }}"/>
+                    <p style="padding-left: 5vh">Save Your Money</p>
+{{--                    <div class="card" style="width:200px">--}}
+{{--                        <img class="card-img-top" alt="Feature1"--}}
+{{--                             src="{{ asset('image/photo.gif') }}">--}}
+{{--                        <div class="card-block">--}}
+{{--                            <h5 class="card-title">--}}
+{{--                                Card title--}}
+{{--                            </h5>--}}
+{{--                            <p class="card-text">--}}
 
-                            </p>
-                        </div>
-                    </div>
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="col-md-4">
                     <div class="card">

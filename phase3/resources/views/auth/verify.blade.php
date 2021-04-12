@@ -103,7 +103,7 @@
             <div> Please type your email. <div>
             <div> Your email MUST end with '@buffalo.edu'. <div>
             <label for="useremail" class="sr-only">UB Email</label>
-            <input type="email" name="useremail" id="useremail" placeholder="Email" value="CSE442TestingPurposes@gmail.com"
+            <input type="email" name="useremail" id="useremail" placeholder="Email" value=""
                    class="@error('email') border-danger @enderror">
             @error('email')
             <div class="text-danger mt-2 text-sm">
