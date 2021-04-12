@@ -111,22 +111,28 @@
             </h4>
             <br>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <button type="button" class="btn btn-success" onclick="showListing('textbookListing')">
                         Textbook Listing
                     </button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <button type="button" class="btn btn-success" onclick="showListing('housingListing')">
-                        Off-Campus Listing
+                        Housing Listing
                     </button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <button type="button" class="btn btn-success" onclick="showListing('roommateListing')">
                         Roommate Listing
+                    </button>
+                </div>
+                <div class="col-md-3">
+
+                    <button type="button" class="btn btn-success" onclick="showListing('genericListing')">
+                        Generic Listing
                     </button>
                 </div>
             </div>
@@ -524,6 +530,79 @@
         <div class="col-md-3">
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" id="genericListing">
+            <h4 class="text-center">
+                Generic Item Contact Information
+            </h4>
+            <form role="form">
+                <div class="form-group">
+
+                    <label for="inputNameGeneric">
+                        Name
+                    </label>
+                    <input class="form-control" id="inputNameGeneric" placeholder="Required">
+                </div>
+                <div class="form-group">
+
+                    <label for="inputEmailGeneric">
+                        Email
+                    </label>
+                    <input class="form-control" id="inputEmailGeneric" placeholder="Required">
+                </div>
+                <div class="form-group">
+
+                    <label for="inputPhoneNumberGeneric">
+                        Phone Number
+                    </label>
+                    <input class="form-control" id="inputPhoneNumberGeneric" placeholder="Required">
+                </div>
+
+                <br>
+                <h4 class="text-center">
+                    Item Description
+                </h4>
+                <br>
+                <h6> Item Condition:
+                </h6>
+                <div class="dropdown">
+
+                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            id="conditionGeneric">
+                        <option class="dropdown-item" value="" selected disabled> Select Condition</option>
+                        <option class="dropdown-item" value="Brand New"> Brand New</option>
+                        <option class="dropdown-item" value="Like New"> Like New</option>
+                        <option class="dropdown-item" value="Very Good"> Very Good</option>
+                        <option class="dropdown-item" value="Good"> Good</option>
+                        <option class="dropdown-item" value="Poor"> Poor</option>
+                    </select>
+                </div>
+                <br>
+                <h6> Will you require pick up or will you deliver it?
+                </h6>
+                <div class="dropdown">
+
+                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            id="sellOption">
+                        <option class="dropdown-item" value=""> Please Select An Option </option>
+                        <option class="dropdown-item" value="Pick Up Only"> Pick Up Only </option>
+                        <option class="dropdown-item" value="Will Be Delivered"> Will Be Delivered </option>
+                        <option class="dropdown-item" value="Buyer Can Choose"> Buyer Can Choose </option>
+                    </select>
+                </div>
+                <br>
+                <h6> Description:
+                </h6>
+                <textarea class="form-control" id="genericDescription" rows="10" placeholder="Required"></textarea>
+                <br>
+                <button type="submit" class="btn btn-success btn-block">
+                    Create An Generic Item Post
+                </button>
+            </form>
+        </div>
+    </div>
     <br>
     <br>
 </div>
@@ -535,6 +614,7 @@
         document.getElementById("textbookListing").style.display = "none";
         document.getElementById("housingListing").style.display = "none";
         document.getElementById("roommateListing").style.display = "none";
+        document.getElementById("genericListing").style.display = "none";
     }
 
     function resetRequired() {
@@ -565,6 +645,13 @@
         document.getElementById("preference").required = false;
         document.getElementById("roommateDescription").required = false;
 
+        /* Generic Item */
+        document.getElementById("inputNameGeneric").required = false;
+        document.getElementById("inputEmailGeneric").required = false;
+        document.getElementById("inputPhoneNumberGeneric").required = false;
+        document.getElementById("conditionGeneric").required = false;
+        document.getElementById("sellOption").required = false;
+        document.getElementById("genericDescription").required = false;
     }
 
     function showListing(type) {
@@ -573,6 +660,7 @@
         if (type === "textbookListing") {
             document.getElementById("housingListing").style.display = "none";
             document.getElementById("roommateListing").style.display = "none";
+            document.getElementById("genericListing").style.display = "none";
             document.getElementById("inputNameTextbook").required = true;
             document.getElementById("inputEmailTextbook").required = true;
             document.getElementById("inputPhoneNumberTextbook").required = true;
@@ -582,6 +670,7 @@
         } else if (type === "housingListing") {
             document.getElementById("textbookListing").style.display = "none";
             document.getElementById("roommateListing").style.display = "none";
+            document.getElementById("genericListing").style.display = "none";
             document.getElementById("inputNameHousing").required = true;
             document.getElementById("inputEmailHousing").required = true;
             document.getElementById("inputPhoneNumberHousing").required = true;
@@ -594,12 +683,23 @@
         } else if (type === "roommateListing") {
             document.getElementById("textbookListing").style.display = "none";
             document.getElementById("housingListing").style.display = "none";
+            document.getElementById("genericListing").style.display = "none";
             document.getElementById("inputNameRoommate").required = true;
             document.getElementById("inputEmailRoommate").required = true;
             document.getElementById("inputPhoneNumberRoommate").required = true;
             document.getElementById("roommates").required = true;
             document.getElementById("preference").required = true;
             document.getElementById("roommateDescription").required = true;
+        } else if (type === "genericListing") {
+            document.getElementById("textbookListing").style.display = "none";
+            document.getElementById("housingListing").style.display = "none";
+            document.getElementById("roommateListing").style.display = "none";
+            document.getElementById("inputNameGeneric").required = true;
+            document.getElementById("inputEmailGeneric").required = true;
+            document.getElementById("inputPhoneNumberGeneric").required = true;
+            document.getElementById("conditionGeneric").required = true;
+            document.getElementById("sellOption").required = true;
+            document.getElementById("genericDescription").required = true;
         }
 
 
@@ -614,7 +714,7 @@
     function scrollFunction() {
         var currentScrollPos = window.pageYOffset;
         var width = document.body.clientWidth;
-        if (width <= 450) {
+        if (width <= 375) {
             if (prevScrollpos > currentScrollPos) {
                 document.getElementById("navbar").style.top = "0";
             } else {

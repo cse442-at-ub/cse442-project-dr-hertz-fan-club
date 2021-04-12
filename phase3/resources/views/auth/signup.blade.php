@@ -94,7 +94,7 @@
 
     </style>
 </head>
-<body>
+<body onload="preventEdit()">
 <div class="container" id="container">
 
     <div class="form-container sign-in-container">
@@ -110,8 +110,8 @@
             </div>
             @enderror
             <label for="email" class="sr-only">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email"
-                   class="@error('email') border-danger @enderror" value="{{old('email')}}">
+            <input type="email" name="email" id="email" placeholder="{{ request('email') }}"
+                   class="@error('email') border-danger @enderror" value="{{ request('email') }}" onchange="preventEdit()" readonly>
             @error('email')
             <div class="text-danger mt-2 text-sm">
                 {{ $message }}
@@ -141,3 +141,8 @@
 
 </body>
 </html>
+<script type="text/javascript">
+    function preventEdit() {
+        document.getElementById('email').value = "{{ request('email') }}"
+    }
+</script>

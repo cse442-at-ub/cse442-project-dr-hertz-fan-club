@@ -52,7 +52,7 @@ class PasswordResetController extends Controller
 
             $user->password = Hash::make($request->password);
             $user->save();
-
+            
             return redirect()->route('main')->with(['success' => 'You successfully changed your password!']);
         }
         else{

@@ -115,7 +115,7 @@
                     Do you want to sell or buy something from UB community? Come and join us!
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="{{route('signup')}}">Sign up</a>
+                    <a class="btn btn-primary btn-large" href="{{route('verify')}}">Sign up</a>
                 </p>
             </div>
         </div>
@@ -240,7 +240,7 @@
                         Resources
                     </h2>
                     <p>
-                        information here.
+                        <a href="https://laravel.com/docs/8.x/releases" target="_blank"> Laravel </a>
                     </p>
                 </div>
             </div>

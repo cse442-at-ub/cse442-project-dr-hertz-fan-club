@@ -12,105 +12,29 @@
 
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    
+
 </head>
 <body>
 <div class="col-md-12">
     <div class="column">
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" onclick="render_detail(t)">Learn more</a>
-            </div>
-        </div>
 
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
+        @if(!$posts->isempty())
+            @foreach($posts as $post)
 
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
+                <div class="card">
+                    <img class="card-img-top"
+                         src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $post->course }}{{ $post->course_num }}</h5>
+                        <p class="card-text">{{ $post->description }}</p>
+                        <a class="btn btn-primary btn-large" onclick="render_detail(t)">Learn more</a>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <p>You reach our bottom line.</p>
 
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
-            <div class="card-body">
-                <h5 class="card-title">UB Campus</h5>
-                <p class="card-text">$ 750</p>
-                <a class="btn btn-primary btn-large" href="#">Learn more</a>
-            </div>
-        </div>
+        @endif
 
     </div>
 

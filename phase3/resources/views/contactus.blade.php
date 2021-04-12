@@ -104,7 +104,7 @@
             </h3>
             <br>
             <br>
-            <form action="{{ route('contactus') }}" method="post">
+            <form action="{{ route('contactus') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="inputName">
@@ -153,7 +153,7 @@
                     <label for="inputFile">
                         File input (Optional)
                     </label>
-                    <input type="file" class="form-control-file" id="inputFile">
+                    <input type="file" class="form-control-file" id="inputFile" name='inputFile'>
                     <p class="help-block">
                         Please attach all necessary files.
                     </p>
