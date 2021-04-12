@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -80,11 +82,13 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
 
-//------------ Forgot Password stuff
 
-Route::get('/forgotpassword', [VerifyEmailController::class, 'index'])->name('verify');
+//------------ Forgot Password need email
 
-Route::post('/forgotpassword', [VerifyEmailController::class, 'store']);
+Route::get('/forgotpassword', [ForgotPasswordController::class, 'index'])->name('forgotpassword');
+
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'store']);
+
 
 //------------- Verify email stuff
 
@@ -104,6 +108,11 @@ Route::get('/dashboard', [DisplayUserController::class, 'index'])->name('names')
 Route::get('/cards', [DisplayPostController::class, 'index'])->name('posts');
 
 
+//------------forget password----------------
+Route::get('/forget/password', [PasswordResetLinkController::class, 'create'])->name('forget.password');
+
+Route::post('/forget/password', [PasswordResetLinkController::class, 'store']);
+
 //----------password reset function----------
 Route::get('/reset/password', [PasswordResetController::class,'create'])->middleware('auth')->name('reset.password');
 
@@ -111,6 +120,11 @@ Route::post('/reset/password', [PasswordResetController::class,'store'])->middle
 
 //-----------profile page------------------
 Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
+
+//-----------profile page------------------
+Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
+
+
 
 
 require __DIR__.'/auth.php';

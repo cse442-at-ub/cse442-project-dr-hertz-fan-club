@@ -55,6 +55,8 @@
         .form-container input {
             background: #eee;
             /*border: none;*/
+            border-style: solid;
+            border-radius: 5px;
             padding: 12px 15px;
             margin: 8px 0;
             width: 100%;
@@ -94,31 +96,42 @@
 </head>
 <body>
 <div class="container" id="container">
-    <div class="form-container login-in-container">
-        <form action="{{ route('login') }}" method="post">
-            <h1>Login</h1>
+
+    <div class="form-container">
+        <form action="{{ route('forget.password') }}" method="post">
             @csrf
+            <h1>Change Password</h1>
+
+            @if ($errors->has('reset_error'))
+                <div class="alert alert-danger">
+                        <strong>{{ $errors->first('reset_error') }}</strong>
+                </div>
+            @endif
+            
+
             <label for="email" class="sr-only">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email"
-                   class="@error('email') border-danger @enderror" value="{{old('email')}}">
-            @error('email')
-            <div class="text-danger mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
+            <input type="email" name="email" id="email" placeholder="{{ request('email') }}"
+                   class="@error('email') border-danger @enderror" value="{{ request('email') }}" readonly>
+
             <label for="password" class="sr-only">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password"
+            <input type="password" name="password" id="password" placeholder="New Password"
                    class="@error('password') border-danger @enderror">
             @error('password')
             <div class="text-danger mt-2 text-sm">
                 {{ $message }}
             </div>
             @enderror
-            <div class="signup-link">Not a member? <a href="{{route('verify')}}">Signup now</a></div>
 
-            <div class="signup-link">Forgot Password? <a href="{{route('forgotpassword')}}">Reset it!</a></div>
-
-            <button type="submit">Login</button>
+            <label for="password_confirmation" class="sr-only">Password Again</label>
+            <input type="password" name="password_confirmation" id="password_confirmation"
+                   placeholder="Repeat your new password"
+                   class="@error('password_confirmation') border-danger @enderror">
+            @error('password_confirmation')
+            <div class="text-danger mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+            <button type="submit">Confirm</button>
         </form>
     </div>
 
