@@ -115,7 +115,9 @@
             </div>
             @enderror
             <div class="signup-link">Not a member? <a href="{{route('verify')}}">Signup now</a></div>
+
             <div class="signup-link">Forgot Password? <a href="{{route('forgotpassword')}}">Reset it!</a></div>
+
             <button type="submit">Login</button>
         </form>
     </div>

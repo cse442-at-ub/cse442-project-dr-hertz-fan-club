@@ -162,25 +162,12 @@
 
         <div class="d-flex" id="navbar-right">
 
-            {{--            <li class="nav-item">--}}
-            {{--                <a class="btn btn-dark" href="#" style="padding: 12px 20px; border-radius: 4px">Profile</a>--}}
-            {{--                <ul>--}}
-            {{--                    <li><a class="dropdown-item" href="#">My Post</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Change Name</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Change Password</a></li>--}}
-            {{--                    <li>--}}
-            {{--                        <div class="dropdown-divider"></div>--}}
-            {{--                    </li>--}}
-            {{--                    <li><a class="dropdown-item" href="{{route('contactus')}}">Report Issue</a></li>--}}
-            {{--                </ul>--}}
-            {{--            </li>--}}
-
             <a class="btn btn-primary" href="{{route('post')}}"
                style="padding: 12px 20px; border-radius: 4px">
                 Post
             </a>
 
-            <a class="btn btn-info" href="{{route('reset.password')}}"
+            <a class="btn btn-info" href="{{route('profile')}}"
                style="padding: 12px 20px; border-radius: 4px">
                 Profile
             </a>
@@ -202,63 +189,6 @@
             </div>
         @endif
     </div>
-{{--    <div class="header">--}}
-{{--        <h2>Scroll Down</h2>--}}
-{{--        <p>Scroll down to see the sticky effect.</p>--}}
-{{--    </div>--}}
-{{--    <!-- Nav Bar -->--}}
-{{--    <div id="navbar">--}}
-{{--        <div class="brand-title-main">--}}
-{{--            UB Market--}}
-{{--        </div>--}}
-{{--        <!--                Searching component-->--}}
-{{--        <div class="mr-auto">--}}
-{{--            <form class="form-inline">--}}
-{{--                <select name="category">--}}
-{{--                    <option value="All">All</option>--}}
-{{--                    <option value="Books">Books</option>--}}
-{{--                    <option value="Housing">Housing</option>--}}
-{{--                    <option value="Roommates">Roommates</option>--}}
-{{--                    <option value="Others">Others</option>--}}
-{{--                </select>--}}
-{{--                <input type="text" name="search" placeholder="Search..">--}}
-{{--                <button class="btn btn-primary" type="submit" style="padding: 12px 20px; border-radius: 4px">--}}
-{{--                    Search--}}
-{{--                </button>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--        <div id="navbar-right">--}}
-{{--            <!--                    Change to a real button in future version-->--}}
-
-{{--            <a class="btn btn-primary" href="{{route('post')}}"--}}
-{{--               style="padding: 12px 20px; border-radius: 4px">--}}
-{{--                Post--}}
-{{--            </a>--}}
-
-
-{{--            <li class="nav-item">--}}
-{{--                <a class="btn btn-dark" href="#" style="padding: 12px 20px; border-radius: 4px">Profile</a>--}}
-{{--                <ul>--}}
-{{--                    <li><a class="dropdown-item" href="#">My Post</a></li>--}}
-{{--                    <li><a class="dropdown-item" href="#">Change Name</a></li>--}}
-{{--                    <li><a class="dropdown-item" href="#">Change Password</a></li>--}}
-{{--                    <li>--}}
-{{--                        <div class="dropdown-divider"></div>--}}
-{{--                    </li>--}}
-{{--                    <li><a class="dropdown-item" href="{{route('contactus')}}">Report Issue</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
-<!--                    Change to a real button in future version-->
-
-{{--            <form action="{{ route('logout') }}" method="post">--}}
-{{--                @csrf--}}
-{{--                <button class="btn btn-danger" style="padding: 12px 20px; border-radius: 4px"--}}
-{{--                        type="submit">--}}
-{{--                    Log out--}}
-{{--                </button>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
 <!--Break page into 2 parts, right for details of chosen post, left for all listing-->
 
@@ -286,7 +216,7 @@
             </div>
             <div class="col-md-4">
 
-                <iframe style="height: 125vh" src="{{route('cards')}}"></iframe>
+                <iframe style="height: 125vh" src="{{route('posts')}}"></iframe>
             </div>
         </div>
     </div>
@@ -310,7 +240,7 @@
                         Resources
                     </h2>
                     <p>
-                        information here.
+                        <a href="https://laravel.com/docs/8.x/releases" target="_blank"> Laravel </a>
                     </p>
                 </div>
             </div>

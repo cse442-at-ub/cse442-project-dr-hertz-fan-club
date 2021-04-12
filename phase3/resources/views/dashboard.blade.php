@@ -99,9 +99,7 @@
 <div class="container" style="margin-top: 400px">
 
 
-    <input type="file" name="avatar">
-    <form action="{{ route('users.update', $user->id) }}" method="POST"  accept-charset="UTF-8"  enctype="multipart/form-data">
-
+{{--    <a class="btn btn-primary btn-large" href="{{route('getUsers')}}">List Users</a>--}}
 {{--    <a class="btn btn-primary btn-large" href="{{route('getBooks')}}">List Books</a>--}}
 
 
@@ -116,7 +114,6 @@
         <p>There is nothing here.</p>
 
     @endif
-
 
     <!-- footer -->
     <div class="row text-center" style="margin-top: 150px">
@@ -201,9 +198,6 @@
 
 
     }
-
-
-
 </script>
 <script src={{asset('js/app.js')}}></script>
 

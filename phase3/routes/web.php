@@ -82,11 +82,13 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
 
+
 //------------ Forgot Password need email
 
 Route::get('/forgotpassword', [ForgotPasswordController::class, 'index'])->name('forgotpassword');
 
 Route::post('/forgotpassword', [ForgotPasswordController::class, 'store']);
+
 
 //------------- Verify email stuff
 
@@ -116,7 +118,8 @@ Route::get('/reset/password', [PasswordResetController::class,'create'])->middle
 
 Route::post('/reset/password', [PasswordResetController::class,'store'])->middleware('auth');
 
-
+//-----------profile page------------------
+Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
 
 //-----------profile page------------------
 Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
@@ -125,3 +128,4 @@ Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->
 
 
 require __DIR__.'/auth.php';
+
