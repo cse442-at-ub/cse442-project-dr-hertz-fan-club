@@ -1,15 +1,20 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\ContactController; 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DisplayUserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\DisplayPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,16 +51,10 @@ Route::get('/main', function () {
     return view('main');
 })->name('main');
 
-
-Route::get('/post', function () {
-    return view('post');
-
-})->name('post');
-
-Route::get('/cards', function () {
-    return view('cards');
-
-})->name('cards');
+//Route::get('/cards', function () {
+//    return view('cards');
+//
+//})->name('cards');
 
 Route::get('/details', function () {
     return view('details');
@@ -67,17 +66,29 @@ Route::get('/faq', function () {
 
 })->name('faq');
 
+//------------ Post page
 
-Route::get('/contactus', [ContactController::class, 'index'])->name('contactus'); 
- 
-Route::post('/contactus', [ContactController::class, 'store']); 
+Route::get('/post', [PostController::class, 'index'])->middleware('auth')->name('post');
+Route::post('/post', [PostController::class, 'store'])->middleware('auth');
+
+//----------- Contact us page
+
+Route::get('/contactus', [ContactController::class, 'index'])->name('contactus');
+
+Route::post('/contactus', [ContactController::class, 'store']);
 
 
 Route::get('/aboutus', function () {
     return view('aboutus');
 })->name('aboutus');
 
-------- Verify email stuff
+//------------ Forgot Password need email
+
+Route::get('/forgotpassword', [ForgotPasswordController::class, 'index'])->name('forgotpassword');
+
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'store']);
+
+//------------- Verify email stuff
 
 Route::get('/verify', [VerifyEmailController::class, 'index'])->name('verify');
 
@@ -89,13 +100,26 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/dashboard', [PostController::class,'index'])->name('posts');
+Route::get('/dashboard', [DisplayUserController::class, 'index'])->name('names');
 
+
+Route::get('/cards', [DisplayPostController::class, 'index'])->name('posts');
+
+
+//------------forget password----------------
+Route::get('/forget/password', [PasswordResetLinkController::class, 'create'])->name('forget.password');
+
+Route::post('/forget/password', [PasswordResetLinkController::class, 'store']);
 
 //----------password reset function----------
 Route::get('/reset/password', [PasswordResetController::class,'create'])->middleware('auth')->name('reset.password');
 
 Route::post('/reset/password', [PasswordResetController::class,'store'])->middleware('auth');
+
+
+
+//-----------profile page------------------
+Route::get('/profile', [ProfileController::class,'index'])->middleware('auth')->name('profile');
 
 
 

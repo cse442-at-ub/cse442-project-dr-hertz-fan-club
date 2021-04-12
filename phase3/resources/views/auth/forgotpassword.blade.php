@@ -55,6 +55,8 @@
         .form-container input {
             background: #eee;
             /*border: none;*/
+            border-style: solid;
+            border-radius: 5px;
             padding: 12px 15px;
             margin: 8px 0;
             width: 100%;
@@ -94,29 +96,20 @@
 </head>
 <body>
 <div class="container" id="container">
-    <div class="form-container login-in-container">
-        <form action="{{ route('login') }}" method="post">
-            <h1>Login</h1>
+
+    <div class="form-container sign-in-container">
+        <form action="{{ route('forgotpassword') }}" method="post">
             @csrf
-            <label for="email" class="sr-only">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email"
-                   class="@error('email') border-danger @enderror" value="{{old('email')}}">
+            <div> Please enter your '@buffalo.edu' to receive the link to reset your password. <div>
+            <label for="useremail" class="sr-only">UB Email</label>
+            <input type="email" name="useremail" id="useremail" placeholder="Email" value=""
+                   class="@error('email') border-danger @enderror">
             @error('email')
             <div class="text-danger mt-2 text-sm">
                 {{ $message }}
             </div>
             @enderror
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password"
-                   class="@error('password') border-danger @enderror">
-            @error('password')
-            <div class="text-danger mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
-            <div class="signup-link">Not a member? <a href="{{route('verify')}}">Signup now</a></div>
-            <div class="signup-link">Forgot Password? <a href="{{route('forgotpassword')}}">Reset it!</a></div>
-            <button type="submit">Login</button>
+            <button type="submit">Verify Email</button>
         </form>
     </div>
 
