@@ -29,13 +29,25 @@ class ProfileController
 //            }
 //
 //        }
-
+        foreach($textbook as $post){
+            $post->files = unserialize($post->files);
+        }
+        foreach($roommate as $post){
+            $post->files = unserialize($post->files);
+        }
+        foreach($house as $post){
+            $post->files = unserialize($post->files);
+        }
+        foreach($everything as $post){
+            $post->files = unserialize($post->files);
+        }
 
         return view('profile', [
             'textbooks' => $textbook,
             'roommates' => $roommate,
             'houses' => $house,
             'everything' => $everything,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
     }
 

@@ -17,110 +17,109 @@ class DisplayPostController
 {
 
 
-    public function index()
-    {
-	$search = request()->query('search');
-	$type = request()->query('category');
-	$posts = collect();
-	if ($type == 'Books'){
+    public function index() {
+	    $search = request()->query('search');
+	    $type = request()->query('category');
+	    $posts = collect();
+	    if ($type == 'Books'){
             $posts = $this->textbookList();
-	} else if ($type == 'Housing')
-	{
-	$posts = $this->houseList();
-	} else if ($type == 'Roommates')
-	{
-	$posts = $this->roommateList();
-	} else if ($type == 'Others')
-	{
-	$posts = $this->otherList();
-	} else 
-	{
-	$textbook = $this->textbookList();
-	$house = $this->houseList();
-	$roommate = $this->roommateList();
-	$other = $this->otherList();
-	
-	$posts = $textbook->merge($roommate)->merge($house)->merge($other)->sortByDesc('time');
-
-	
-	}
-	return view('main', [
+	    } else if ($type == 'Housing'){
+	        $posts = $this->houseList();
+	    } else if ($type == 'Roommates'){
+	        $posts = $this->roommateList();
+	    } else if ($type == 'Others')	{
+	        $posts = $this->otherList();
+	    } else {
+	        $textbook = $this->textbookList();
+	        $house = $this->houseList();
+	        $roommate = $this->roommateList();
+	        $other = $this->otherList();
+	        $posts = $textbook->merge($roommate)->merge($house)->merge($other)->sortByDesc('time');
+        }
+        //dd($posts);
+        foreach($posts as $post){
+            //dd($post);
+            $post->files = unserialize($post->files);
+        }
+        
+        //$image = unserialize($posts->files);
+	    return view('main', [
             'posts' => $posts,
+            //'image' => $image,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
 
-         
-	 $posts = $this->generatePostList();
-	        $detail = collect();
+        
+	    $posts = $this->generatePostList();
+	    $detail = collect();
         return view('main', [
             'posts' => $posts,
-            'detail' => $detail
+            'detail' => $detail,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
     }
 
     public function textbookList()
     {
-	$search = request()->query('search');
+	    $search = request()->query('search');
 
-	$posts = DB::table('textbook')->where('title','LIKE',"%{$search}%")
+	    $posts = DB::table('textbook')->where('title','LIKE',"%{$search}%")
 					->orWhere('con','LIKE',"%{$search}%")
 					->orWhere('course','LIKE',"%{$search}%")
 					->orWhere('course_num','LIKE',"%{$search}%")
 					->orWhere('price','LIKE',"%{$search}%")
 					->orWhere('description','LIKE',"%{$search}%")
 					->get();
-	return $posts;
+	    return $posts;
     }
 
     public function houseList()
     {
-	$search = request()->query('search');
+	    $search = request()->query('search');
 
-	$posts = DB::table('roommate')->where('title','LIKE',"%{$search}%")
+	    $posts = DB::table('roommate')->where('title','LIKE',"%{$search}%")
 					->orWhere('roommate_num','LIKE',"%{$search}%")
 					->orWhere('roommate_gen','LIKE',"%{$search}%")
 					->orWhere('description','LIKE',"%{$search}%")
 					->get();
-	return $posts;
-
+	    return $posts;
     }
 
     public function roommateList()
     {
-	$search = request()->query('search');
+	    $search = request()->query('search');
 
-	$posts = DB::table('house')->where('title','LIKE',"%{$search}%")
+	    $posts = DB::table('house')->where('title','LIKE',"%{$search}%")
 					->orWhere('house_type','LIKE',"%{$search}%")
 					->orWhere('bathroom_num','LIKE',"%{$search}%")
 					->orWhere('bedroom_num','LIKE',"%{$search}%")
 					->orWhere('address','LIKE',"%{$search}%")
 					->orWhere('description','LIKE',"%{$search}%")
 					->get();
-	return $posts;
-
+	    return $posts;
     }
 
     public function otherList()
     {
-	$search = request()->query('search');
+	    $search = request()->query('search');
 
-	$posts = DB::table('everything')->where('title','LIKE',"%{$search}%")
+	    $posts = DB::table('everything')->where('title','LIKE',"%{$search}%")
 					->orWhere('con','LIKE',"%{$search}%")
 					->orWhere('price','LIKE',"%{$search}%")
 					->orWhere('description','LIKE',"%{$search}%")
 					->get();
-	return $posts;
-
+	    return $posts;
     }
 
 
 
     public function showPage()
     {
-
         $detail = collect();
-        //dd($posts);
+        
         return view('detail', [
-            'detail' => $detail
+            'detail' => $detail,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
     }
 
@@ -128,9 +127,10 @@ class DisplayPostController
     {
 
         $detail = collect();
-        //dd($posts);
+        
         return view('detail-mobile', [
-            'detail' => $detail
+            'detail' => $detail,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
     }
 
@@ -138,31 +138,25 @@ class DisplayPostController
     {
         if ($type == "textbook") {
             $detail = DB::table('textbook')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("textbook/" . $id);
+
         } elseif ($type == "roommate") {
             $detail = DB::table('roommate')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("roommate/" . $id);
+
         } elseif ($type == "house") {
             $detail = DB::table('house')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("housing/" . $id);
+
         } else {
             $detail = DB::table('everything')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("generic/" . $id);
+
 //            $detail = collect($detail[0]);
 //            $detail = $detail->put('general', 'ture')->toArray();
 //            $detail = collect([$detail]);
         }
-        //dd($files);
-        $image = array();
-        $url = "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/";
-        foreach ($files as $index=>$file) {
-            array_push($image, array($index, $url . $file ));
-        }
-        //dd($image);
-        //dd($detail);
+        $image = unserialize($detail[0]->files);
         return view('detail', [
             'detail' => $detail,
-            'image' => $image
+            'image' => $image,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
 
     }
@@ -172,26 +166,19 @@ class DisplayPostController
 
         if ($type == "textbook") {
             $detail = DB::table('textbook')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("textbook/" . $id);
         } elseif ($type == "roommate") {
             $detail = DB::table('roommate')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("roommate/" . $id);
         } elseif ($type == "house") {
             $detail = DB::table('house')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("housing/" . $id);
         } else {
             $detail = DB::table('everything')->where('id', $id)->get();
-            $files = Storage::disk('public')->allFiles("generic/" . $id);
         }
-        $image = array();
-        $url = "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/";
-        foreach ($files as $index=>$file) {
-            array_push($image, array($index, $url . $file ));
-        }
-        //dd($detail);
-        return view('detail-mobile', [
+
+        $image = unserialize($detail[0]->files);
+        return view('detail', [
             'detail' => $detail,
-            'image' => $image
+            'image' => $image,
+            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
         ]);
 
 

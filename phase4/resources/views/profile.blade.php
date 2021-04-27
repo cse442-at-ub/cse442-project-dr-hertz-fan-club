@@ -183,7 +183,7 @@
                         <div class="column float-left" style="padding-left: 17px">
                             <div class="card" style="width:350px">
                                 <img class="card-img-top"
-                                     src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg"
+                                     src="{{ $url }}{{ $textbook->files[0] }}"
                                      alt="Card image">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $textbook->title }}</h4>
@@ -235,7 +235,7 @@
                         <div class="column float-left" style="padding-left: 17px">
                             <div class="card" style="width:350px">
                                 <img class="card-img-top"
-                                     src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg"
+                                     src="{{ $url }}{{ $roommate->files[0] }}"
                                      alt="Card image">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $roommate->title }}</h4>
@@ -280,7 +280,7 @@
                         <div class="column float-left" style="padding-left: 17px">
                             <div class="card" style="width:350px">
                                 <img class="card-img-top"
-                                     src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg"
+                                     src="{{ $url }}{{ $house->files[0] }}"
                                      alt="Card image">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $house->title }}</h4>
@@ -325,7 +325,7 @@
                         <div class="column float-left" style="padding-left: 17px">
                             <div class="card" style="width:350px">
                                 <img class="card-img-top"
-                                     src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg"
+                                     src="{{ $url }}{{ $other->files[0] }}"
                                      alt="Card image">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ $other->title }}</h4>
