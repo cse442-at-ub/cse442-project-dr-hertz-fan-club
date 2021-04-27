@@ -64,12 +64,12 @@
         #navbar-right {
             float: right;
         }
-
+/*
         select {
             border-radius: 4px;
             height: 3vh;
         }
-
+*/
         @media screen and (max-width: 580px) {
             #navbar {
                 padding: 20px 10px !important;
@@ -161,7 +161,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="textbookListing">
-            <form role="form" action="{{ route('post')}}" method="post">
+            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -181,7 +181,7 @@
                 <br>
                 <label for="textbook_condition">Textbook Condition:</label>
                 <div class="dropdown">
-                    <select id="textbook_condition" name= "textbook_condition" class="dropdown-toggle" data-toggle="dropdown" required >
+                    <select id="textbook_condition" name= "textbook_condition" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" required >
                         <option class="dropdown-item" value="Brand New" {{ old('textbook_condition') == "Brand New" ? 'selected' : '' }}> Brand New </option>
                         <option class="dropdown-item" value="Like New" {{ old('textbook_condition') == "Like New" ? 'selected' : '' }}> Like New </option>
                         <option class="dropdown-item" value="Very Good" {{ old('textbook_condition') == "Very Good" ? 'selected' : '' }}> Very Good </option>
@@ -199,7 +199,7 @@
                 <br>
                 <label for="course">Course:</label>
                 <div class="dropdown">
-                    <select id="course" name="course" class="dropdown-toggle" data-toggle="dropdown" required>
+                    <select id="course" name="course" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" required>
                         <option class="dropdown-item" value="AAS"> AAS </option>
                         <option class="dropdown-item" value="ASL"> ASL </option>
                         <option class="dropdown-item" value="AMS"> AMS </option>
@@ -350,6 +350,15 @@
                 </div>
                 @enderror
                 <br>
+                <div class="form-group">
+                    <label for="textbookfile">
+                        File input (Required)
+                    </label>
+                    <input type="file" name='textbookfile[]' accept="image/*" class="form-control-file" id="textbookfile" multiple required>
+                    <p class="help-block">
+                        Please attach picture(s) of the textbook.
+                    </p>
+                </div>
                 <br>
                 <input type="submit" name="create" class="btn btn-success btn-block" value= "Post">
                 <br>
@@ -361,7 +370,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="housingListing">
-            <form role="form" action="{{ route('post')}}" method="post">
+            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -438,6 +447,16 @@
                 </h6>
                 <textarea class="form-control" id="address" name="address" rows="5" placeholder="Required" required></textarea>
                 <br>
+                <div class="form-group">
+                    <label for="housingfile">
+                        File input (Required)
+                    </label>
+                    <input type="file" name='housingfile[]' accept="image/*" class="form-control-file" id="housingfile" multiple required>
+                    <p class="help-block">
+                        Please attach picture(s) of the housing.
+                    </p>
+                </div>
+                <br>
                 <button type="submit" class="btn btn-success btn-block">
                     Create A Housing Post
                 </button>
@@ -451,7 +470,7 @@
             <h4 class="text-center">
                 Roommate Listing
             </h4>
-            <form role="form" action="{{ route('post')}}" method="post">
+            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h6> Title:
@@ -499,6 +518,16 @@
                 <label for="roommateDescription"></label><textarea class="form-control"
                                                                    id="roommateDescription" name="roommateDescription"  rows="10" placeholder="Required" required></textarea>
                 <br>
+                <div class="form-group">
+                    <label for="roommatefile">
+                        File input (Required)
+                    </label>
+                    <input type="file" name='roommatefile[]' accept="image/*" class="form-control-file" id="roommatefile" multiple required>
+                    <p class="help-block">
+                        Please attach picture(s).
+                    </p>
+                </div>
+                <br>
                 <button type="submit" class="btn btn-success btn-block">
                     Create A Roommate Post
                 </button>
@@ -511,7 +540,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="genericListing">
-            <form role="form" action="{{ route('post')}}" method="post">
+            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -541,8 +570,18 @@
                 </h6>
                 <textarea class="form-control" id="genericDescription" name="genericDescription" rows="10" placeholder="Required"></textarea>
                 <br>
+                <div class="form-group">
+                    <label for="genericfile">
+                        File input (Required)
+                    </label>
+                    <input type="file" name='genericfile[]' accept="image/*" class="form-control-file" id="genericfile" multiple required>
+                    <p class="help-block">
+                        Please attach picture(s) of the item.
+                    </p>
+                </div>
+                <br>
                 <button type="submit" class="btn btn-success btn-block">
-                    Post
+                    Create a Post
                 </button>
             </form>
         </div>
