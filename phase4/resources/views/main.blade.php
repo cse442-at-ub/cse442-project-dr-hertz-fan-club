@@ -226,7 +226,7 @@
                                     <div id="cards">
                                         <div class="card" style="background: #9fcdff">
                                             <img class="card-img-top"
-                                                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg"
+                                                 src="{{ $url }}{{ $post->files[0] }}"
                                                  alt="x">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
@@ -264,7 +264,7 @@
                                     <div id="cards">
                                         <div class="card" style="background: #1e7e34">
                                             <img class="card-img-top"
-                                                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
+                                                 src="{{ $url }}{{ $post->files[0] }}">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                 <p class="card-text">{{ $post->roommate_gen }}</p>
@@ -284,7 +284,7 @@
                                     <div id="cards">
                                         <div class="card" style="background: #005cbf">
                                             <img class="card-img-top"
-                                                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
+                                                 src="{{ $url }}{{ $post->files[0] }}">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                 <p class="card-text">{{ $post->house_type }}</p>
@@ -304,7 +304,7 @@
                                     <div id="cards">
                                         <div class="card" style="background: #5a6268">
                                             <img class="card-img-top"
-                                                 src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
+                                                 src="{{ $url }}{{ $post->files[0] }}">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                 <p class="card-text">{{ $post->con }}</p>
