@@ -16,7 +16,7 @@
 
     <style>
         input[type=text] {
-            width: 130px;
+            width: 150px;
             box-sizing: border-box;
             border-radius: 4px;
             font-size: 16px;
@@ -29,8 +29,8 @@
             transition: width 0.4s ease-in-out;
         }
 
-        input[type=text]:focus {
-            width: 50%;
+        input[type=text] {
+            width: 20%;
         }
 
         * {
@@ -187,7 +187,7 @@
 
 
     <div class="col-sm-12" id="searchbarstuff" style="padding-top: 10px">
-        <form>
+        <form action="{{ route ('main') }}" method="GET">
             <select name="category" style="height: 50px; border-radius: 4px">
                 <option value="All">All</option>
                 <option value="Books">Books</option>
@@ -307,7 +307,7 @@
                                                  src="https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
-                                                <p class="card-text">{{ $post->condition }}</p>
+                                                <p class="card-text">{{ $post->con }}</p>
                                                 <script type="text/javascript">
                                                     if (window.innerWidth < 580) {
                                                         document.write('<a class="btn btn-info" href="{{ route('post.detail.mobile', ['type'=>'general', 'id'=>$post->id]) }}"style="border-radius: 4px">Learn more</a>')
