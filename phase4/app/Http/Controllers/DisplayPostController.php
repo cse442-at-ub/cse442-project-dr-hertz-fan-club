@@ -12,6 +12,12 @@ use function Sodium\add;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Validator;
+
+use App\Mail\ContactPostOwnerMail;
+use App\Mail\ContactPostOwnerConfirmationMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class DisplayPostController
 {
@@ -73,7 +79,7 @@ class DisplayPostController
 	    return $posts;
     }
 
-    public function houseList()
+    public function roommateList()
     {
 	    $search = request()->query('search');
 
@@ -85,7 +91,7 @@ class DisplayPostController
 	    return $posts;
     }
 
-    public function roommateList()
+    public function houseList()
     {
 	    $search = request()->query('search');
 
@@ -136,6 +142,7 @@ class DisplayPostController
 
     public function detail($type, $id)
     {
+
         if ($type == "textbook") {
             $detail = DB::table('textbook')->where('id', $id)->get();
 
@@ -152,18 +159,24 @@ class DisplayPostController
 //            $detail = $detail->put('general', 'ture')->toArray();
 //            $detail = collect([$detail]);
         }
-        $image = unserialize($detail[0]->files);
-        return view('detail', [
-            'detail' => $detail,
-            'image' => $image,
-            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
-        ]);
+        
+        if(!$detail->isempty()){
+
+            $images = unserialize($detail[0]->files);
+            return view('detail', [
+                'detail' => $detail,
+                'images' => $images,
+                'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/",
+                'currenturl' => URL::to('/post/' . $type . '/' . $id . '/detail/mobile')
+            ]);
+        } else {
+            return abort(404);
+        }
 
     }
 
     public function mdetail($type, $id)
     {
-
         if ($type == "textbook") {
             $detail = DB::table('textbook')->where('id', $id)->get();
         } elseif ($type == "roommate") {
@@ -174,15 +187,111 @@ class DisplayPostController
             $detail = DB::table('everything')->where('id', $id)->get();
         }
 
-        $image = unserialize($detail[0]->files);
-        return view('detail', [
-            'detail' => $detail,
-            'image' => $image,
-            'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/"
-        ]);
+        if(!$detail->isempty()){
+            $images = unserialize($detail[0]->files);
+            //dd($image);
+            return view('detail-mobile', [
+                'detail' => $detail,
+                'images' => $images,
+                'url' => "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/",
+                'currenturl' => url()->current()
+            ]);
+        } else {
+            return abort(404);
+        }
 
 
     }
+
+    public function contact(Request $request, $type, $id)
+    {
+        $request->validate([
+            'inputName' => 'required|string',
+            'inputEmail' => 'required|string|email',
+            'topic' => 'required',
+            'contactDescription' => 'required'
+        ]);
+
+        $name = $request->inputName;
+        $email = $request->inputEmail;
+        $topic =  $request->topic;
+        $message =  $request->contactDescription;
+        
+        if ($type == "textbook") {
+            $detail = DB::table('textbook')->where('id', $id)->get();
+        } elseif ($type == "roommate") {
+            $detail = DB::table('roommate')->where('id', $id)->get();
+        } elseif ($type == "house") {
+            $detail = DB::table('house')->where('id', $id)->get();
+        } else {
+            $detail = DB::table('everything')->where('id', $id)->get();
+        }
+        
+        if(!$detail->isempty()){
+            $userid = $detail[0]->user_id;
+            $user = DB::table('users')->where('id', $userid)->get();
+
+            //dd($user[0]->email);
+            
+            # This one is sent to the post owner.
+            Mail::to($user[0]->email)->send(new ContactPostOwnerMail($name, $email, $topic, $message, url()->previous()));
+
+            #This one is sent to the user.
+            Mail::to($email)->send(new ContactPostOwnerConfirmationMail($name, $email, $topic, $message, url()->previous()));
+
+            
+            return redirect()->route('detail', ['detail' => collect()] )->with(['success' => 'Your message has been sent!']);
+        } else {
+            return abort(404);
+        }
+
+    }
+
+    public function mcontact(Request $request, $type, $id)
+    {
+        
+        $request->validate([
+            'inputName' => 'required|string',
+            'inputEmail' => 'required|string|email',
+            'topic' => 'required',
+            'contactDescription' => 'required'
+        ]);
+
+        $name = $request->inputName;
+        $email = $request->inputEmail;
+        $topic =  $request->topic;
+        $message =  $request->contactDescription;
+        
+        if ($type == "textbook") {
+            $detail = DB::table('textbook')->where('id', $id)->get();
+        } elseif ($type == "roommate") {
+            $detail = DB::table('roommate')->where('id', $id)->get();
+        } elseif ($type == "house") {
+            $detail = DB::table('house')->where('id', $id)->get();
+        } else {
+            $detail = DB::table('everything')->where('id', $id)->get();
+        }
+        
+        if(!$detail->isempty()){
+            $userid = $detail[0]->user_id;
+            $user = DB::table('users')->where('id', $userid)->get();
+
+            //dd($user[0]->email);
+
+            # This one is sent to the post owner.
+            Mail::to($user[0]->email)->send(new ContactPostOwnerMail($name, $email, $topic, $message, url()->previous()));
+
+            #This one is sent to the user.
+            Mail::to($email)->send(new ContactPostOwnerConfirmationMail($name, $email, $topic, $message, url()->previous()));
+
+            
+            return redirect()->route('main')->with(['success' => 'Your message has been sent!']);
+        } else {
+            return abort(404);
+        }
+
+    }
+
 
     public function generatePostList()
     {
@@ -196,62 +305,10 @@ class DisplayPostController
 //        shuffle($items);
 //        $posts = \Illuminate\Support\Collection::make($items);
 
-        $url = "https://www-student.cse.buffalo.edu/CSE442-542/2021-Spring/cse-442e/storage/app/public/";
-        $default = "https://www.buffalo.edu/content/www/campusliving/about-us/employment-opportunities/how-to-apply/_jcr_content/par/image.img.447.260.jpg/1507045432762.jpg";
         $textbooks = DB::table('textbook')->get();
-/*
-        $this->imagebytime = array();
-        
-        foreach ($textbooks as $tb) {            
-            $files = Storage::disk('public')->allFiles("textbook/" . $tb->id);
-            if(!empty($files)){
-                $arr = [ $tb->time => $url . $files['0'] ];
-                array_push($imagebytime, $arr);
-            } else {
-                $arr = [ $tb->time => $default ];
-                array_push($imagebytime, $arr);
-            }
-        }
-*/
         $roommates = DB::table('roommate')->get();
-/*
-        foreach ($textbooks as $tb) {            
-            $files = Storage::disk('public')->allFiles("roommate/" . $tb->id);
-            if(!empty($files)){
-                $arr = [ $tb->time => $url . $files['0'] ];
-                array_push($imagebytime, $arr);
-            } else {
-                $arr = [ $tb->time => $default ];
-                array_push($imagebytime, $arr);
-            }
-        }
-*/
         $houses = DB::table('house')->get();
-/*
-        foreach ($textbooks as $tb) {            
-            $files = Storage::disk('public')->allFiles("housing/" . $tb->id);
-            if(!empty($files)){
-                $arr = [ $tb->time => $url . $files['0'] ];
-                array_push($imagebytime, $arr);
-            } else {
-                $arr = [ $tb->time => $default ];
-                array_push($imagebytime, $arr);
-            }
-        }
-*/
         $general = DB::table('everything')->get();
-/*
-        foreach ($textbooks as $tb) {            
-            $files = Storage::disk('public')->allFiles("generic/" . $tb->id);
-            if(!empty($files)){
-                $arr = [ $tb->time => $url . $files['0'] ];
-                array_push($imagebytime, $arr);
-            } else {
-                $arr = [ $tb->time => $default ];
-                array_push($imagebytime, $arr);
-            }
-        }
-*/
         $posts = $textbooks->merge($roommates)->merge($houses)->merge($general)->sortByDesc('time');
         //dd($textbooks);
         return $posts;

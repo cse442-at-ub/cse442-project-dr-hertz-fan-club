@@ -48,16 +48,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-//Route::get('/main', function () {
-//    return view('main');
-//})->middleware('auth')->name('main');
-
-Route::post('/cards', function () {
-    return view('cards');
-
-})->name('cards');
-
-
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -100,16 +90,25 @@ Route::get('/dashboard', [DisplayUserController::class, 'index'])->name('names')
 
 Route::get('/main', [DisplayPostController::class, 'index'])->middleware('auth')->name('main');
 
-Route::get('/post/{type}/{id}/detail', [DisplayPostController::class, 'detail'])->name('post.detail');
+Route::post('/main/{search}', [DisplayPostController::class, 'index'])->middleware('auth');
 
-Route::get('/post/{type}/{id}/detail/mobile', [DisplayPostController::class, 'mdetail'])->name('post.detail.mobile');
+Route::get('/post/{type}/{id}/detail', [DisplayPostController::class, 'detail'])->middleware('auth')->name('post.detail');
 
-Route::get('/back', [DisplayPostController::class, 'back'])->name('post.go.back');
+Route::get('/post/{type}/{id}/detail/mobile', [DisplayPostController::class, 'mdetail'])->middleware('auth')->name('post.detail.mobile');
 
-Route::get('/detail', [DisplayPostController::class, 'showPage'])->name('detail');
+Route::get('/back', [DisplayPostController::class, 'back'])->middleware('auth')->name('post.go.back');
 
-Route::get('/detail/mobile', [DisplayPostController::class, 'showPageM'])->name('detail.mobile');
-//Route::get('/detail/mobile', function () {return view('detail-mobile');})->name('detail.mobile');
+Route::get('/detail', [DisplayPostController::class, 'showPage'])->middleware('auth')->name('detail');
+
+//Route::get('/detail/mobile', [DisplayPostController::class, 'showPageM'])->middleware('auth')->name('detail.mobile');
+Route::get('/detail/mobile', function () {return view('detail-mobile');})->middleware('auth')->name('detail.mobile');
+
+
+//----------- Send Message to post owner
+
+Route::post('/post/{type}/{id}/contact', [DisplayPostController::class, 'contact'])->middleware('auth')->name('post.contact');
+
+Route::post('/post/{type}/{id}/mobile/contact', [DisplayPostController::class, 'mcontact'])->middleware('auth')->name('post.mobile.contact');
 
 //------------forget password----------------
 Route::get('/forget/password', [PasswordResetLinkController::class, 'create'])->name('forget.password');
