@@ -21,6 +21,7 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
+            background-image: url('https://inspirationhut.net/wp-content/uploads/2013/05/201.png');
         }
 
         #navbar {
@@ -76,13 +77,41 @@
             }
 
             #navbar a {
-                float: none;
-                display: block;
-                text-align: left;
+                float: left;
+                color: white;
+                text-align: center;
+                padding: 12px;
+                text-decoration: none;
+                font-size: 18px;
+                line-height: 25px;
+                border-radius: 4px;
+            }
+
+            #navbar #title {
+                font-size: 20px;
+                font-weight: bold;
+                transition: 0.4s;
+                width: 50vw;
+            }
+
+            #navbar a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            #navbar a.active {
+                background-color: dodgerblue;
+                color: white;
             }
 
             #navbar-right {
-                float: none;
+                float: right;
+                padding-top: 10px;
+            }
+
+            #navbar-right a {
+                padding: 0 10px;
+
             }
         }
     </style>
@@ -91,7 +120,7 @@
 
 <! -- Nav Bar -->
 <div id="navbar">
-    <a id="title" style="font-size: 35px">
+    <a id="title" style="font-size: 35px" href="{{ route('landing') }}">
         UB Market
     </a>
 
@@ -112,6 +141,14 @@
     </div>
 @endif
 
+<div>
+    @if (Session::has('danger'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert" style="z-index: 999">
+            {{ Session::get('danger') }}
+        </div>
+    @endif
+</div>
+
 <div class="container-fluid" style="margin-top: 300px">
     <div class="row">
         <div class="col-md-3">
@@ -128,26 +165,26 @@
             <div class="row">
                 <div class="col-md-3">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="showListing('textbookListing')">
-                        Textbook Listing
+                    <button type="button" class="btn btn-success" onclick="showListing('textbookListing'); location.href='#textbookListing'">
+                        Textbook
                     </button>
                 </div>
                 <div class="col-md-3">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="showListing('housingListing')">
-                        Housing Listing
+                    <button type="button" class="btn btn-success" onclick="showListing('housingListing'); location.href='#housingListing'">
+                        Housing
                     </button>
                 </div>
                 <div class="col-md-3">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="showListing('roommateListing')">
-                        Roommate Listing
+                    <button type="button" class="btn btn-success" onclick="showListing('roommateListing'); location.href='#roommateListing'">
+                        Roommate
                     </button>
                 </div>
                 <div class="col-md-3">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="showListing('genericListing')">
-                        General Listing
+                    <button type="button" class="btn btn-success" onclick="showListing('genericListing'); location.href='#genericListing'">
+                        General Item
                     </button>
                 </div>
             </div>
@@ -161,7 +198,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="textbookListing">
-            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('post.textbook')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -182,11 +219,11 @@
                 <label for="textbook_condition">Textbook Condition:</label>
                 <div class="dropdown">
                     <select id="textbook_condition" name= "textbook_condition" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" required >
-                        <option class="dropdown-item" value="Brand New" {{ old('textbook_condition') == "Brand New" ? 'selected' : '' }}> Brand New </option>
-                        <option class="dropdown-item" value="Like New" {{ old('textbook_condition') == "Like New" ? 'selected' : '' }}> Like New </option>
-                        <option class="dropdown-item" value="Very Good" {{ old('textbook_condition') == "Very Good" ? 'selected' : '' }}> Very Good </option>
-                        <option class="dropdown-item" value="Good" {{ old('textbook_condition') == "Good" ? 'selected' : '' }}> Good </option>
-                        <option class="dropdown-item" value="Poor" {{ old('textbook_condition') == "Poor" ? 'selected' : '' }}> Poor </option>
+                        <option class="dropdown-item" value="Brand New" style="color:white;" {{ old('textbook_condition') == "Brand New" ? 'selected' : '' }}> Brand New </option>
+                        <option class="dropdown-item" value="Like New" style="color:white;" {{ old('textbook_condition') == "Like New" ? 'selected' : '' }}> Like New </option>
+                        <option class="dropdown-item" value="Very Good" style="color:white;" {{ old('textbook_condition') == "Very Good" ? 'selected' : '' }}> Very Good </option>
+                        <option class="dropdown-item" value="Good" style="color:white;" {{ old('textbook_condition') == "Good" ? 'selected' : '' }}> Good </option>
+                        <option class="dropdown-item" value="Poor" style="color:white;" {{ old('textbook_condition') == "Poor" ? 'selected' : '' }}> Poor </option>
                     </select>
                 </div>
 
@@ -200,117 +237,117 @@
                 <label for="course">Course:</label>
                 <div class="dropdown">
                     <select id="course" name="course" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" required>
-                        <option class="dropdown-item" value="AAS"> AAS </option>
-                        <option class="dropdown-item" value="ASL"> ASL </option>
-                        <option class="dropdown-item" value="AMS"> AMS </option>
-                        <option class="dropdown-item" value="APY"> APY </option>
-                        <option class="dropdown-item" value="ARI"> ARI </option>
-                        <option class="dropdown-item" value="ARC"> ARC </option>
-                        <option class="dropdown-item" value="ART"> ART </option>
-                        <option class="dropdown-item" value="AHI"> AHI </option>
-                        <option class="dropdown-item" value="AS"> AS </option>
-                        <option class="dropdown-item" value="BCH"> BCH </option>
-                        <option class="dropdown-item" value="BIO"> BIO </option>
-                        <option class="dropdown-item" value="BE"> BE </option>
-                        <option class="dropdown-item" value="BMI"> BMI </option>
-                        <option class="dropdown-item" value="BMS"> BMS </option>
-                        <option class="dropdown-item" value="STA"> STA </option>
-                        <option class="dropdown-item" value="CE"> CE </option>
-                        <option class="dropdown-item" value="CHE"> CHE </option>
-                        <option class="dropdown-item" value="CHI"> CHI </option>
-                        <option class="dropdown-item" value="CIE"> CIE </option>
-                        <option class="dropdown-item" value="CL"> CL </option>
-                        <option class="dropdown-item" value="COM"> COM </option>
-                        <option class="dropdown-item" value="CDS"> CDS </option>
-                        <option class="dropdown-item" value="CHB"> CHB </option>
-                        <option class="dropdown-item" value="COL"> COL </option>
-                        <option class="dropdown-item" value="CDA"> CDA </option>
-                        <option class="dropdown-item" value="CSE"> CSE </option>
-                        <option class="dropdown-item" value="CPM"> CPM </option>
-                        <option class="dropdown-item" value="CEP"> CEP </option>
-                        <option class="dropdown-item" value="DAC"> DAC </option>
-                        <option class="dropdown-item" value="ECO"> ECO </option>
-                        <option class="dropdown-item" value="ELP"> ELP </option>
-                        <option class="dropdown-item" value="EE"> EE </option>
-                        <option class="dropdown-item" value="EAS"> EAS </option>
-                        <option class="dropdown-item" value="ENG"> ENG </option>
-                        <option class="dropdown-item" value="ESL"> ESL </option>
-                        <option class="dropdown-item" value="EVS"> EVS </option>
-                        <option class="dropdown-item" value="END"> END </option>
-                        <option class="dropdown-item" value="ES"> ES </option>
-                        <option class="dropdown-item" value="FR"> FR </option>
-                        <option class="dropdown-item" value="MGG"> MGG </option>
-                        <option class="dropdown-item" value="GEO"> GEO </option>
-                        <option class="dropdown-item" value="GLY"> GLY </option>
-                        <option class="dropdown-item" value="GER"> GER </option>
-                        <option class="dropdown-item" value="GGS"> GGS </option>
-                        <option class="dropdown-item" value="GR"> GR </option>
-                        <option class="dropdown-item" value="GRE"> GRE </option>
-                        <option class="dropdown-item" value="HEB"> HEB </option>
-                        <option class="dropdown-item" value="HIN"> HIN </option>
-                        <option class="dropdown-item" value="HIS"> HIS </option>
-                        <option class="dropdown-item" value="HON"> HON </option>
-                        <option class="dropdown-item" value="IE"> IE </option>
-                        <option class="dropdown-item" value="ITA"> ITA </option>
-                        <option class="dropdown-item" value="JPN"> JPN </option>
-                        <option class="dropdown-item" value="JDS"> JDS </option>
-                        <option class="dropdown-item" value="KOR"> KOR </option>
-                        <option class="dropdown-item" value="LAT"> LAT </option>
-                        <option class="dropdown-item" value="LLS"> LLS </option>
-                        <option class="dropdown-item" value="LAW"> LAW </option>
-                        <option class="dropdown-item" value="ULC"> ULC </option>
-                        <option class="dropdown-item" value="LAI"> LAI </option>
-                        <option class="dropdown-item" value="LIS"> LIS </option>
-                        <option class="dropdown-item" value="LIN"> LIN </option>
-                        <option class="dropdown-item" value="MGA"> MGA </option>
-                        <option class="dropdown-item" value="MGE"> MGE </option>
-                        <option class="dropdown-item" value="MGF"> MGF </option>
-                        <option class="dropdown-item" value="MGI"> MGI </option>
-                        <option class="dropdown-item" value="MGM"> MGM </option>
-                        <option class="dropdown-item" value="MGO"> MGO </option>
-                        <option class="dropdown-item" value="MGQ"> MGQ </option>
-                        <option class="dropdown-item" value="MGS"> MGS </option>
-                        <option class="dropdown-item" value="MGT"> MGT </option>
-                        <option class="dropdown-item" value="MDI"> MDI </option>
-                        <option class="dropdown-item" value="MTH"> MTH </option>
-                        <option class="dropdown-item" value="MAE"> MAE </option>
-                        <option class="dropdown-item" value="DMS"> DMS </option>
-                        <option class="dropdown-item" value="MT"> MT </option>
-                        <option class="dropdown-item" value="MCH"> MCH </option>
-                        <option class="dropdown-item" value="MIC"> MIC </option>
-                        <option class="dropdown-item" value="MLS"> MLS </option>
-                        <option class="dropdown-item" value="MUS"> MUS </option>
-                        <option class="dropdown-item" value="MTR"> MTR </option>
-                        <option class="dropdown-item" value="NRS"> NRS </option>
-                        <option class="dropdown-item" value="NMD"> NMD </option>
-                        <option class="dropdown-item" value="NTR" id=> NTR </option>
-                        <option class="dropdown-item" value="OT" id=> OT </option>
-                        <option class="dropdown-item" value="MGB" id=> MGB </option>
-                        <option class="dropdown-item" value="PAS" id=> PAS </option>
-                        <option class="dropdown-item" value="PHC" id=> PHC </option>
-                        <option class="dropdown-item" value="PMY" id=> PMY </option>
-                        <option class="dropdown-item" value="PHM" id=> PHM </option>
-                        <option class="dropdown-item" value="PHI" id=> PHI </option>
-                        <option class="dropdown-item" value="PHY" id=> PHY </option>
-                        <option class="dropdown-item" value="PGY" id=> PGY </option>
-                        <option class="dropdown-item" value="POL" id=> POL </option>
-                        <option class="dropdown-item" value="PS" id=> PS </option>
-                        <option class="dropdown-item" value="PSY" id=> PSY </option>
-                        <option class="dropdown-item" value="PUB" id=> PUB </option>
-                        <option class="dropdown-item" value="NBC" id=> NBC </option>
-                        <option class="dropdown-item" value="REC" id=> REC </option>
-                        <option class="dropdown-item" value="RLL" id=> RLL </option>
-                        <option class="dropdown-item" value="RUS" id=> RUS </option>
-                        <option class="dropdown-item" value="SSC" id=> SSC </option>
-                        <option class="dropdown-item" value="SW" id=> SW </option>
-                        <option class="dropdown-item" value="SOC" id=> SOC </option>
-                        <option class="dropdown-item" value="SPA" id=> SPA </option>
-                        <option class="dropdown-item" value="TH" id=> TH </option>
-                        <option class="dropdown-item" value="NBS" id=> NBS </option>
-                        <option class="dropdown-item" value="UGC" id=> UGC </option>
-                        <option class="dropdown-item" value="UE" id=> UE </option>
-                        <option class="dropdown-item" value="NSG" id=> NSG </option>
-                        <option class="dropdown-item" value="YID" id="YID"> YID </option>
+                    <option class="dropdown-item" value="AAS" style="color:white;" {{ old('course') == "AAS" ? 'selected' : '' }}> AAS </option>
+                        <option class="dropdown-item" value="ASL" style="color:white;" {{ old('course') == "ASL" ? 'selected' : '' }}> ASL </option>
+                        <option class="dropdown-item" value="AMS" style="color:white;" {{ old('course') == "AMS" ? 'selected' : '' }}> AMS </option>
+                        <option class="dropdown-item" value="APY" style="color:white;" {{ old('course') == "APY" ? 'selected' : '' }}> APY </option>
+                        <option class="dropdown-item" value="ARI" style="color:white;" {{ old('course') == "ARI" ? 'selected' : '' }}> ARI </option>
+                        <option class="dropdown-item" value="ARC" style="color:white;" {{ old('course') == "ARC" ? 'selected' : '' }}> ARC </option>
+                        <option class="dropdown-item" value="ART" style="color:white;" {{ old('course') == "ART" ? 'selected' : '' }}> ART </option>
+                        <option class="dropdown-item" value="AHI" style="color:white;" {{ old('course') == "AHI" ? 'selected' : '' }}> AHI </option>
+                        <option class="dropdown-item" value="AS" style="color:white;" {{ old('course') == "AS" ? 'selected' : '' }}> AS </option>
+                        <option class="dropdown-item" value="BCH" style="color:white;" {{ old('course') == "BCH" ? 'selected' : '' }}> BCH </option>
+                        <option class="dropdown-item" value="BIO" style="color:white;" {{ old('course') == "BIO" ? 'selected' : '' }}> BIO </option>
+                        <option class="dropdown-item" value="BE" style="color:white;" {{ old('course') == "BE" ? 'selected' : '' }}> BE </option>
+                        <option class="dropdown-item" value="BMI" style="color:white;" {{ old('course') == "BMI" ? 'selected' : '' }}> BMI </option>
+                        <option class="dropdown-item" value="BMS" style="color:white;" {{ old('course') == "BMS" ? 'selected' : '' }}> BMS </option>
+                        <option class="dropdown-item" value="STA" style="color:white;" {{ old('course') == "STA" ? 'selected' : '' }}> STA </option>
+                        <option class="dropdown-item" value="CE" style="color:white;" {{ old('course') == "CE" ? 'selected' : '' }}> CE </option>
+                        <option class="dropdown-item" value="CHE" style="color:white;" {{ old('course') == "CHE" ? 'selected' : '' }}> CHE </option>
+                        <option class="dropdown-item" value="CHI" style="color:white;" {{ old('course') == "CHI" ? 'selected' : '' }}> CHI </option>
+                        <option class="dropdown-item" value="CIE" style="color:white;" {{ old('course') == "CIE" ? 'selected' : '' }}> CIE </option>
+                        <option class="dropdown-item" value="CL" style="color:white;" {{ old('course') == "CL" ? 'selected' : '' }}> CL </option>
+                        <option class="dropdown-item" value="COM" style="color:white;" {{ old('course') == "COM" ? 'selected' : '' }}> COM </option>
+                        <option class="dropdown-item" value="CDS" style="color:white;" {{ old('course') == "CDS" ? 'selected' : '' }}> CDS </option>
+                        <option class="dropdown-item" value="CHB" style="color:white;" {{ old('course') == "CHB" ? 'selected' : '' }}> CHB </option>
+                        <option class="dropdown-item" value="COL" style="color:white;" {{ old('course') == "COL" ? 'selected' : '' }}> COL </option>
+                        <option class="dropdown-item" value="CDA" style="color:white;" {{ old('course') == "CDA" ? 'selected' : '' }}> CDA </option>
+                        <option class="dropdown-item" value="CSE" style="color:white;" {{ old('course') == "CSE" ? 'selected' : '' }}> CSE </option>
+                        <option class="dropdown-item" value="CPM" style="color:white;" {{ old('course') == "CPM" ? 'selected' : '' }}> CPM </option>
+                        <option class="dropdown-item" value="CEP" style="color:white;" {{ old('course') == "CEP" ? 'selected' : '' }}> CEP </option>
+                        <option class="dropdown-item" value="DAC" style="color:white;" {{ old('course') == "DAC" ? 'selected' : '' }}> DAC </option>
+                        <option class="dropdown-item" value="ECO" style="color:white;" {{ old('course') == "ECO" ? 'selected' : '' }}> ECO </option>
+                        <option class="dropdown-item" value="ELP" style="color:white;" {{ old('course') == "ELP" ? 'selected' : '' }}> ELP </option>
+                        <option class="dropdown-item" value="EE" style="color:white;" {{ old('course') == "EE" ? 'selected' : '' }}> EE </option>
+                        <option class="dropdown-item" value="EAS" style="color:white;" {{ old('course') == "EAS" ? 'selected' : '' }}> EAS </option>
+                        <option class="dropdown-item" value="ENG" style="color:white;" {{ old('course') == "ENG" ? 'selected' : '' }}> ENG </option>
+                        <option class="dropdown-item" value="ESL" style="color:white;" {{ old('course') == "ESL" ? 'selected' : '' }}> ESL </option>
+                        <option class="dropdown-item" value="EVS" style="color:white;" {{ old('course') == "EVS" ? 'selected' : '' }}> EVS </option>
+                        <option class="dropdown-item" value="END" style="color:white;" {{ old('course') == "END" ? 'selected' : '' }}> END </option>
+                        <option class="dropdown-item" value="ES" style="color:white;" {{ old('course') == "ES" ? 'selected' : '' }}> ES </option>
+                        <option class="dropdown-item" value="FR" style="color:white;" {{ old('course') == "FR" ? 'selected' : '' }}> FR </option>
+                        <option class="dropdown-item" value="MGG" style="color:white;" {{ old('course') == "MGG" ? 'selected' : '' }}> MGG </option>
+                        <option class="dropdown-item" value="GEO" style="color:white;" {{ old('course') == "GEO" ? 'selected' : '' }}> GEO </option>
+                        <option class="dropdown-item" value="GLY" style="color:white;" {{ old('course') == "GLY" ? 'selected' : '' }}> GLY </option>
+                        <option class="dropdown-item" value="GER" style="color:white;" {{ old('course') == "GER" ? 'selected' : '' }}> GER </option>
+                        <option class="dropdown-item" value="GGS" style="color:white;" {{ old('course') == "GGS" ? 'selected' : '' }}> GGS </option>
+                        <option class="dropdown-item" value="GR" style="color:white;" {{ old('course') == "GR" ? 'selected' : '' }}> GR </option>
+                        <option class="dropdown-item" value="GRE" style="color:white;" {{ old('course') == "GRE" ? 'selected' : '' }}> GRE </option>
+                        <option class="dropdown-item" value="HEB" style="color:white;" {{ old('course') == "HEB" ? 'selected' : '' }}> HEB </option>
+                        <option class="dropdown-item" value="HIN" style="color:white;" {{ old('course') == "HIN" ? 'selected' : '' }}> HIN </option>
+                        <option class="dropdown-item" value="HIS" style="color:white;" {{ old('course') == "HIS" ? 'selected' : '' }}> HIS </option>
+                        <option class="dropdown-item" value="HON" style="color:white;" {{ old('course') == "HON" ? 'selected' : '' }}> HON </option>
+                        <option class="dropdown-item" value="IE" style="color:white;" {{ old('course') == "IE" ? 'selected' : '' }}> IE </option>
+                        <option class="dropdown-item" value="ITA" style="color:white;" {{ old('course') == "ITA" ? 'selected' : '' }}> ITA </option>
+                        <option class="dropdown-item" value="JPN" style="color:white;" {{ old('course') == "JPN" ? 'selected' : '' }}> JPN </option>
+                        <option class="dropdown-item" value="JDS" style="color:white;" {{ old('course') == "JDS" ? 'selected' : '' }}> JDS </option>
+                        <option class="dropdown-item" value="KOR" style="color:white;" {{ old('course') == "KOR" ? 'selected' : '' }}> KOR </option>
+                        <option class="dropdown-item" value="LAT" style="color:white;" {{ old('course') == "LAT" ? 'selected' : '' }}> LAT </option>
+                        <option class="dropdown-item" value="LLS" style="color:white;" {{ old('course') == "LLS" ? 'selected' : '' }}> LLS </option>
+                        <option class="dropdown-item" value="LAW" style="color:white;" {{ old('course') == "LAW" ? 'selected' : '' }}> LAW </option>
+                        <option class="dropdown-item" value="ULC" style="color:white;" {{ old('course') == "ULC" ? 'selected' : '' }}> ULC </option>
+                        <option class="dropdown-item" value="LAI" style="color:white;" {{ old('course') == "LAI" ? 'selected' : '' }}> LAI </option>
+                        <option class="dropdown-item" value="LIS" style="color:white;" {{ old('course') == "LIS" ? 'selected' : '' }}> LIS </option>
+                        <option class="dropdown-item" value="LIN" style="color:white;" {{ old('course') == "LIN" ? 'selected' : '' }}> LIN </option>
+                        <option class="dropdown-item" value="MGA" style="color:white;" {{ old('course') == "MGA" ? 'selected' : '' }}> MGA </option>
+                        <option class="dropdown-item" value="MGE" style="color:white;" {{ old('course') == "MGE" ? 'selected' : '' }}> MGE </option>
+                        <option class="dropdown-item" value="MGF" style="color:white;" {{ old('course') == "MGF" ? 'selected' : '' }}> MGF </option>
+                        <option class="dropdown-item" value="MGI" style="color:white;" {{ old('course') == "MGI" ? 'selected' : '' }}> MGI </option>
+                        <option class="dropdown-item" value="MGM" style="color:white;" {{ old('course') == "MGM" ? 'selected' : '' }}> MGM </option>
+                        <option class="dropdown-item" value="MGO" style="color:white;" {{ old('course') == "MGO" ? 'selected' : '' }}> MGO </option>
+                        <option class="dropdown-item" value="MGQ" style="color:white;" {{ old('course') == "MGQ" ? 'selected' : '' }}> MGQ </option>
+                        <option class="dropdown-item" value="MGS" style="color:white;" {{ old('course') == "MGS" ? 'selected' : '' }}> MGS </option>
+                        <option class="dropdown-item" value="MGT" style="color:white;" {{ old('course') == "MGT" ? 'selected' : '' }}> MGT </option>
+                        <option class="dropdown-item" value="MDI" style="color:white;" {{ old('course') == "MDI" ? 'selected' : '' }}> MDI </option>
+                        <option class="dropdown-item" value="MTH" style="color:white;" {{ old('course') == "MTH" ? 'selected' : '' }}> MTH </option>
+                        <option class="dropdown-item" value="MAE" style="color:white;" {{ old('course') == "MAE" ? 'selected' : '' }}> MAE </option>
+                        <option class="dropdown-item" value="DMS" style="color:white;" {{ old('course') == "DMS" ? 'selected' : '' }}> DMS </option>
+                        <option class="dropdown-item" value="MT" style="color:white;" {{ old('course') == "MT" ? 'selected' : '' }}> MT </option>
+                        <option class="dropdown-item" value="MCH" style="color:white;" {{ old('course') == "MCH" ? 'selected' : '' }}> MCH </option>
+                        <option class="dropdown-item" value="MIC" style="color:white;" {{ old('course') == "MIC" ? 'selected' : '' }}> MIC </option>
+                        <option class="dropdown-item" value="MLS" style="color:white;" {{ old('course') == "MLS" ? 'selected' : '' }}> MLS </option>
+                        <option class="dropdown-item" value="MUS" style="color:white;" {{ old('course') == "MUS" ? 'selected' : '' }}> MUS </option>
+                        <option class="dropdown-item" value="MTR" style="color:white;" {{ old('course') == "MTR" ? 'selected' : '' }}> MTR </option>
+                        <option class="dropdown-item" value="NRS" style="color:white;" {{ old('course') == "NRS" ? 'selected' : '' }}> NRS </option>
+                        <option class="dropdown-item" value="NMD" style="color:white;" {{ old('course') == "NMD" ? 'selected' : '' }}> NMD </option>
+                        <option class="dropdown-item" value="NTR" style="color:white;" {{ old('course') == "NTR" ? 'selected' : '' }}> NTR </option>
+                        <option class="dropdown-item" value="OT" style="color:white;" {{ old('course') == "OT" ? 'selected' : '' }}> OT </option>
+                        <option class="dropdown-item" value="MGB" style="color:white;" {{ old('course') == "MGB" ? 'selected' : '' }}> MGB </option>
+                        <option class="dropdown-item" value="PAS" style="color:white;" {{ old('course') == "PAS" ? 'selected' : '' }}> PAS </option>
+                        <option class="dropdown-item" value="PHC" style="color:white;" {{ old('course') == "PHC" ? 'selected' : '' }}> PHC </option>
+                        <option class="dropdown-item" value="PMY" style="color:white;" {{ old('course') == "PMY" ? 'selected' : '' }}> PMY </option>
+                        <option class="dropdown-item" value="PHM" style="color:white;" {{ old('course') == "PHM" ? 'selected' : '' }}> PHM </option>
+                        <option class="dropdown-item" value="PHI" style="color:white;" {{ old('course') == "PHI" ? 'selected' : '' }}> PHI </option>
+                        <option class="dropdown-item" value="PHY" style="color:white;" {{ old('course') == "PHY" ? 'selected' : '' }}> PHY </option>
+                        <option class="dropdown-item" value="PGY" style="color:white;" {{ old('course') == "PGY" ? 'selected' : '' }}> PGY </option>
+                        <option class="dropdown-item" value="POL" style="color:white;" {{ old('course') == "POL" ? 'selected' : '' }}> POL </option>
+                        <option class="dropdown-item" value="PS" style="color:white;" {{ old('course') == "PS" ? 'selected' : '' }}> PS </option>
+                        <option class="dropdown-item" value="PSY" style="color:white;" {{ old('course') == "PSY" ? 'selected' : '' }}> PSY </option>
+                        <option class="dropdown-item" value="PUB" style="color:white;" {{ old('course') == "PUB" ? 'selected' : '' }}> PUB </option>
+                        <option class="dropdown-item" value="NBC" style="color:white;" {{ old('course') == "NBC" ? 'selected' : '' }}> NBC </option>
+                        <option class="dropdown-item" value="REC" style="color:white;" {{ old('course') == "REC" ? 'selected' : '' }}> REC </option>
+                        <option class="dropdown-item" value="RLL" style="color:white;" {{ old('course') == "RLL" ? 'selected' : '' }}> RLL </option>
+                        <option class="dropdown-item" value="RUS" style="color:white;" {{ old('course') == "RUS" ? 'selected' : '' }}> RUS </option>
+                        <option class="dropdown-item" value="SSC" style="color:white;" {{ old('course') == "SSC" ? 'selected' : '' }}> SSC </option>
+                        <option class="dropdown-item" value="SW" style="color:white;" {{ old('course') == "SW" ? 'selected' : '' }}> SW </option>
+                        <option class="dropdown-item" value="SOC" style="color:white;" {{ old('course') == "SOC" ? 'selected' : '' }}> SOC </option>
+                        <option class="dropdown-item" value="SPA" style="color:white;" {{ old('course') == "SPA" ? 'selected' : '' }}> SPA </option>
+                        <option class="dropdown-item" value="TH" style="color:white;" {{ old('course') == "TH" ? 'selected' : '' }}> TH </option>
+                        <option class="dropdown-item" value="NBS" style="color:white;" {{ old('course') == "NBS" ? 'selected' : '' }}> NBS </option>
+                        <option class="dropdown-item" value="UGC" style="color:white;" {{ old('course') == "UGC" ? 'selected' : '' }}> UGC </option>
+                        <option class="dropdown-item" value="UE" style="color:white;" {{ old('course') == "UE" ? 'selected' : '' }}> UE </option>
+                        <option class="dropdown-item" value="NSG" style="color:white;" {{ old('course') == "NSG" ? 'selected' : '' }}> NSG </option>
+                        <option class="dropdown-item" value="YID" style="color:white;" {{ old('course') == "YID" ? 'selected' : '' }}> YID </option>
                     </select>
                 </div>
 
@@ -322,7 +359,7 @@
 
                 <br>
                 <label for="course_num">Course Number:</label>
-                <input id="course_num" name="course_num" class="form-control" placeholder="101" minlength="3" maxlength="3" value="{{old('course_num')}}"required>
+                <input id="course_num" name="course_num" class="form-control" placeholder="101" minlength="3" maxlength="3" value="{{old('course_num')}}" required>
 
                 @error('course_num')
                 <div class="text-danger mt-2 text-sm">
@@ -331,10 +368,10 @@
                 @enderror
 
                 <br>
-                <label for="price">Price:</label>
-                <input id="price" name="price" class="form-control" placeholder="&#36" value="{{old('price')}}" required>
+                <label for="bookPrice">Textbook Price:</label>
+                <input id="bookPrice" name="bookPrice" class="form-control" placeholder="&#36" value="{{old('bookPrice')}}" required>
 
-                @error('price')
+                @error('bookPrice')
                 <div class="text-danger mt-2 text-sm">
                     {{ $message }}
                 </div>
@@ -354,9 +391,12 @@
                     <label for="textbookfile">
                         File input (Required)
                     </label>
-                    <input type="file" name='textbookfile[]' accept="image/*" class="form-control-file" id="textbookfile" multiple required>
+                    <input type="file" name='textbookfile[]' accept="image/*" class="form-control-file" id="textbookfile" onchange="return checkFileSize('textbookfile');" multiple required>
                     <p class="help-block">
                         Please attach picture(s) of the textbook.
+                    </p>
+                    <p class="help-block">
+                        Each file must not be more than 2MB and the combined file size must not be more than 8MB.
                     </p>
                 </div>
                 <br>
@@ -370,7 +410,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="housingListing">
-            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('post.house')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -385,59 +425,49 @@
                 </h6>
                 <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    <select class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
                             id="housingType" name="housingType">
                         <option class="dropdown-item" value="" selected disabled> Select Housing Type</option>
-                        <option class="dropdown-item" value="Whole House"> Whole House</option>
-                        <option class="dropdown-item" value="Upper Flat"> Upper Flat</option>
-                        <option class="dropdown-item" value="Lower Flat"> Lower Flat</option>
-                        <option class="dropdown-item" value="Apartment"> Apartment</option>
+                        <option class="dropdown-item" value="Whole House" style="color:white;"> Whole House</option>
+                        <option class="dropdown-item" value="Upper Flat" style="color:white;"> Upper Flat</option>
+                        <option class="dropdown-item" value="Lower Flat" style="color:white;"> Lower Flat</option>
+                        <option class="dropdown-item" value="Apartment" style="color:white;"> Apartment</option>
                     </select>
                 </div>
-                <br>
-                <h6> Number of Bedrooms:
-                </h6>
-                <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            id="bedrooms" name="bedrooms">
-                        <option class="dropdown-item" value="" selected disabled> Select A Number</option>
-                        <option class="dropdown-item" value="1"> 1</option>
-                        <option class="dropdown-item" value="2"> 2</option>
-                        <option class="dropdown-item" value="3"> 3</option>
-                        <option class="dropdown-item" value="4"> 4</option>
-                        <option class="dropdown-item" value="5"> 5</option>
-                        <option class="dropdown-item" value="6"> 6</option>
-                        <option class="dropdown-item" value="7"> 7</option>
-                        <option class="dropdown-item" value="8"> 8</option>
-                        <option class="dropdown-item" value="9"> 9</option>
-                        <option class="dropdown-item" value="10"> 10</option>
-                        <option class="dropdown-item" value="11"> 11</option>
-                        <option class="dropdown-item" value="12"> 12</option>
-                    </select>
-                </div>
+
                 <br>
+
+                <label for="rentPrice">Rent Price: </label>
+                <input id="rentPrice" name="rentPrice" class="form-control" value="{{old('rentPrice')}}" required>
+
+                @error('rentPrice')
+                <div class="text-danger mt-2 text-sm">
+                    {{ $message }}
+                </div>
+                @enderror
+                <br>
+
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <input id="bedrooms" name="bedrooms" class="form-control" value="{{old('bedrooms')}}" required>
+
+                @error('bedrooms')
+                <div class="text-danger mt-2 text-sm">
+                    {{ $message }}
+                </div>
+                @enderror
+                <br>
+
                 <h6> Number of Bathrooms:
                 </h6>
-                <div class="dropdown">
+                <input id="bathrooms" name="bathrooms" class="form-control" value="{{old('bathrooms')}}" required>
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            id="bathrooms" name="bathrooms">
-                        <option class="dropdown-item" value="" selected disabled> Select A Number</option>
-                        <option class="dropdown-item" value="1"> 1</option>
-                        <option class="dropdown-item" value="2"> 2</option>
-                        <option class="dropdown-item" value="3"> 3</option>
-                        <option class="dropdown-item" value="4"> 4</option>
-                        <option class="dropdown-item" value="5"> 5</option>
-                        <option class="dropdown-item" value="6"> 6</option>
-                        <option class="dropdown-item" value="7"> 7</option>
-                        <option class="dropdown-item" value="8"> 8</option>
-                        <option class="dropdown-item" value="9"> 9</option>
-                        <option class="dropdown-item" value="10"> 10</option>
-                        <option class="dropdown-item" value="11"> 11</option>
-                        <option class="dropdown-item" value="12"> 12</option>
-                    </select>
+                @error('bathrooms')
+                <div class="text-danger mt-2 text-sm">
+                    {{ $message }}
                 </div>
+                @enderror
+
                 <br>
                 <h6> Description:
                 </h6>
@@ -451,9 +481,12 @@
                     <label for="housingfile">
                         File input (Required)
                     </label>
-                    <input type="file" name='housingfile[]' accept="image/*" class="form-control-file" id="housingfile" multiple required>
+                    <input type="file" name='housingfile[]' accept="image/*" onchange="return checkFileSize('housingfile');" class="form-control-file" id="housingfile"  multiple required>
                     <p class="help-block">
                         Please attach picture(s) of the housing.
+                    </p>
+                    <p class="help-block">
+                        Each file must not be more than 2MB and the combined file size must not be more than 8MB.
                     </p>
                 </div>
                 <br>
@@ -470,7 +503,7 @@
             <h4 class="text-center">
                 Roommate Listing
             </h4>
-            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('post.roommate')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h6> Title:
@@ -479,37 +512,27 @@
                 <br>
                 <h6> How many roommate(s) are you looking for?
                 </h6>
-                <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                            id="roommates" name="roommates">
-                        <option class="dropdown-item" value="" selected disabled> Select A Number</option>
-                        <option class="dropdown-item" value="1"> 1</option>
-                        <option class="dropdown-item" value="2"> 2</option>
-                        <option class="dropdown-item" value="3"> 3</option>
-                        <option class="dropdown-item" value="4"> 4</option>
-                        <option class="dropdown-item" value="5"> 5</option>
-                        <option class="dropdown-item" value="6"> 6</option>
-                        <option class="dropdown-item" value="7"> 7</option>
-                        <option class="dropdown-item" value="8"> 8</option>
-                        <option class="dropdown-item" value="9"> 9</option>
-                        <option class="dropdown-item" value="10"> 10</option>
-                        <option class="dropdown-item" value="11"> 11</option>
-                        <option class="dropdown-item" value="12"> 12</option>
-                    </select>
+                <input id="roommates" name="roommates" class="form-control" value="{{old('roommates')}}" required>
+
+                @error('roommates')
+                <div class="text-danger mt-2 text-sm">
+                    {{ $message }}
                 </div>
+                @enderror
+
                 <br>
                 <h6> Preference on gender of roommate(s)?
                 </h6>
                 <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    <select class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
                             id="preference" name="preference">
                         <option class="dropdown-item" value="" selected disabled> Select Preference</option>
-                        <option class="dropdown-item" value="Female Only"> Female Only</option>
-                        <option class="dropdown-item" value="Male Only"> Male Only</option>
-                        <option class="dropdown-item" value="Any Gender"> Any Gender</option>
-                        <option class="dropdown-item" value="Other"> Other</option>
+                        <option class="dropdown-item" value="Female Only" style="color:white;" > Female Only</option>
+                        <option class="dropdown-item" value="Male Only" style="color:white;" > Male Only</option>
+                        <option class="dropdown-item" value="Any Gender" style="color:white;" > Any Gender</option>
+                        <option class="dropdown-item" value="Other" style="color:white;" > Other</option>
                     </select>
                 </div>
                 <br>
@@ -522,9 +545,12 @@
                     <label for="roommatefile">
                         File input (Required)
                     </label>
-                    <input type="file" name='roommatefile[]' accept="image/*" class="form-control-file" id="roommatefile" multiple required>
+                    <input type="file" name='roommatefile[]' accept="image/*" onchange="return checkFileSize('roommatefile');" class="form-control-file" id="roommatefile" multiple required>
                     <p class="help-block">
                         Please attach picture(s).
+                    </p>
+                    <p class="help-block">
+                        Each file must not be more than 2MB and the combined file size must not be more than 8MB.
                     </p>
                 </div>
                 <br>
@@ -540,7 +566,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6" id="genericListing">
-            <form role="form" action="{{ route('post')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{ route('post.everything')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <h4 class="text-center">
@@ -555,17 +581,28 @@
                 </h6>
                 <div class="dropdown">
 
-                    <select class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    <select class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
                             id="conditionGeneric" name="conditionGeneric">
                         <option class="dropdown-item" value="" selected disabled> Select Condition</option>
-                        <option class="dropdown-item" value="Brand New"> Brand New</option>
-                        <option class="dropdown-item" value="Like New"> Like New</option>
-                        <option class="dropdown-item" value="Very Good"> Very Good</option>
-                        <option class="dropdown-item" value="Good"> Good</option>
-                        <option class="dropdown-item" value="Poor"> Poor</option>
+                        <option class="dropdown-item" value="Brand New" style="color:white;" > Brand New</option>
+                        <option class="dropdown-item" value="Like New" style="color:white;" > Like New</option>
+                        <option class="dropdown-item" value="Very Good" style="color:white;" > Very Good</option>
+                        <option class="dropdown-item" value="Good" style="color:white;" > Good</option>
+                        <option class="dropdown-item" value="Poor" style="color:white;" > Poor</option>
                     </select>
                 </div>
                 <br>
+
+                <label for="itemPrice">Item Price: </label>
+                <input id="itemPrice" name="itemPrice" class="form-control" value="{{old('itemPrice')}}" required>
+
+                @error('itemPrice')
+                <div class="text-danger mt-2 text-sm">
+                    {{ $message }}
+                </div>
+                @enderror
+                <br>
+
                 <h6> Description:
                 </h6>
                 <textarea class="form-control" id="genericDescription" name="genericDescription" rows="10" placeholder="Required"></textarea>
@@ -574,9 +611,12 @@
                     <label for="genericfile">
                         File input (Required)
                     </label>
-                    <input type="file" name='genericfile[]' accept="image/*" class="form-control-file" id="genericfile" multiple required>
+                    <input type="file" name='genericfile[]' accept="image/*" onchange="return checkFileSize('genericfile');" class="form-control-file" id="genericfile" multiple required>
                     <p class="help-block">
                         Please attach picture(s) of the item.
+                    </p>
+                    <p class="help-block">
+                        Each file must not be more than 2MB and the combined file size must not be more than 8MB.
                     </p>
                 </div>
                 <br>
@@ -658,6 +698,39 @@
     window.setTimeout(function () {
         document.getElementById("alert").remove();
     }, 5000);
+
+    function checkFileSize(type) {
+        var files = document.getElementById(type).files;
+        var filetoobig = false;
+        var combinedfilestoobig = false;
+        var totalsize = 0;
+        for (i = 0; i < files.length; i++) {
+            if (files[i].size > 2000000){
+                filetoobig = true;
+            }
+            totalsize = totalsize + files[i].size;
+        }
+        if (totalsize > 8000000) {
+            combinedfilestoobig = true;
+        }
+        if (combinedfilestoobig && filetoobig){
+            alert('One of your files is over 2MB and the combined file size is over 8MB!');
+            document.getElementById(type).value = "";
+            return false;
+        } else if (filetoobig) {
+            alert('One of your files is over 2MB!');
+            document.getElementById(type).value = "";
+            return false;
+        } else if (combinedfilestoobig) {
+            alert('The combined file size is over 8MB!');
+            document.getElementById(type).value = "";
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
 </script>
 </body>
 </html>
